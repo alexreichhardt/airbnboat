@@ -23,8 +23,8 @@ class Boat < ApplicationRecord
   # validates :fuel_capacity, presence: true
   # validates :fuel_capacity, numericality: { only_integer: true }
   # validates :required_license, presence: true
-  # validates :price, presence: true
-  # validates :price, numericality: { only_integer: true }
+   validates :price, presence: true
+   validates :price, numericality: { only_integer: true }
   # validates :start_date, presence: true
   # validates :end_date, presence: true
    validates :city, presence: true
