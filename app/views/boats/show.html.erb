@@ -1,2 +1,14 @@
 <h1>Boats#show</h1>
 <p>Find me in app/views/boats/show.html.erb</p>
+
+<ul>
+  <li>Boat Title: <%= @boat.title %></li>
+  <li>Boat City: <%= @boat.city %></li>
+  <li>Boat Person Capacity: <%= @boat.person_capacity %></li>
+
+
+  <li><%= link_to "Go Back Results", boats_path(id: @boat.id, capacity: params[:capacity]) %></li>
+</ul>
+
+
+<%= link_to "Request Booking", new_boat_booking_path(@boat, price: "hi", capacity: @boat.person_capacity ) %>
