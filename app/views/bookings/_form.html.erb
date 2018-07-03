@@ -1,0 +1,18 @@
+<%= simple_form_for([@boat, @booking]) do |f| %>
+
+  <div class="form-group">
+
+    <%= f.label :start_date  %>
+    <%= f.text_field :start_date  %>
+
+    <%= f.label :end_date  %>
+    <%= f.text_field :end_date  %>
+
+    <%= f.label :license  %>
+    <%= f.text_field :license  %>
+
+    <%= f.submit %>
+
+ </div>
+
+<% end %>
