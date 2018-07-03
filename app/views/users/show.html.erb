@@ -9,7 +9,7 @@ hey <%= @user.email%>
     <p><%= booking.start_date %></p>
     <p><%= booking.end_date %></p>
     <p><%= booking.license %></p>
-    <%= link_to("Add review", new_booking_booking_review_path) %>
+    <%= link_to("Add review", new_booking_booking_review_path(booking.id)) %>
   <% end %>
 <% else %>
   no bookings
