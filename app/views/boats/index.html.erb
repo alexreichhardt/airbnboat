@@ -1,2 +1,12 @@
 <h1>Boats#index</h1>
 <p>Find me in app/views/boats/index.html.erb</p>
+
+<% @boats.each do |boat| %>
+<ul>
+  <li>Boat Title: <%= boat.title %></li>
+  <li>Boat City: <%= boat.city %></li>
+  <li>Boat Person Capacity: <%= boat.person_capacity %></li>
+  <li><%= link_to "Details", boat_path(boat, capacity: @search_capacity) %></li>
+</ul>
+
+<% end %>

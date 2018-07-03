@@ -9,8 +9,8 @@ class Boat < ApplicationRecord
 
   # validates :name, presence: true
   # validates :name, uniqueness: true
-  # validates :person_capacity, presence: true
-  # validates :person_capacity, numericality: { only_integer: true }
+   validates :person_capacity, presence: true
+   validates :person_capacity, numericality: { only_integer: true }
   # validates :year, presence: true
   # validates :year, numericality: { only_integer: true }
   # validates :length, presence: true
@@ -27,7 +27,7 @@ class Boat < ApplicationRecord
   # validates :price, numericality: { only_integer: true }
   # validates :start_date, presence: true
   # validates :end_date, presence: true
-  # validates :city, presence: true
+   validates :city, presence: true
   # validates :street, presence: true
   # validates :location_details, presence: true
   # validates :zipcode, presence: true
