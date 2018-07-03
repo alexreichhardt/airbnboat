@@ -1,0 +1,30 @@
+hey <%= @user.email%>
+<%= link_to "Change your password", edit_user_registration_path %>
+
+<% if @bookings.any?  %>
+  <% @bookings.each do |booking| %>
+    <p><%= @user.email %></p>
+    <p><%= Boat.find(booking.boat_id).title %></p>
+    <p><%= Boat.find(booking.boat_id).description %></p>
+    <p><%= booking.start_date %></p>
+    <p><%= booking.end_date %></p>
+    <p><%= booking.license %></p>
+    <%= link_to("Add review", new_booking_booking_review_path) %>
+  <% end %>
+<% else %>
+  no bookings
+<% end %>
+
+<% if @boats.any? %>
+  <% @boats.each do |boat| %>
+    <p><%= boat.title %></p>
+    <p><%= boat.description %></p>
+    <p><%= boat.city %></p>
+    <p><%= boat.person_capacity %></p>
+    <%= link_to("Show Boat", boat_path(boat)) %>
+    <%= link_to("Edit Boat", edit_boat_path(boat)) %>
+    <%= link_to("Delete", boat_path(boat), method: :delete, data: { confirm: "Are you sure?" }) %>
+  <% end %>
+<% else %>
+  no boats
+<% end %>
