@@ -1,0 +1,18 @@
+<%= simple_form_for([@booking, @bookingreview]) do |f| %>
+
+  <div class="form-group">
+
+    <%= f.label :title  %>
+    <%= f.text_field :title  %>
+
+    <%= f.label :content  %>
+    <%= f.text_field :content  %>
+
+    <%= f.label :rating  %>
+    <%= f.text_field :rating  %>
+
+    <%= f.submit %>
+
+ </div>
+
+<% end %>
