@@ -5,6 +5,8 @@ class Boat < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
+
+
   # validates :name, presence: true
   # validates :name, uniqueness: true
   # validates :person_capacity, presence: true
