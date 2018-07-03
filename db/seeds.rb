@@ -11,6 +11,7 @@ puts user2.id
 puts boat.id
 
 booking = Booking.create(user_id: user2.id, boat_id: boat.id)
+review = BookingReview.create(title: "hi", user_id: user2.id, booking_id: booking.id)
 
 puts "booking.id:"
 puts booking.id
@@ -20,3 +21,7 @@ puts booking.owner_user.email # dam@dln.name
 
 puts "Booker:"
 puts booking.user.email # dam2@dln.name
+
+puts "review:"
+puts review.user.email
+puts review.booking.id

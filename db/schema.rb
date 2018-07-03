@@ -10,24 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_02_120525) do
+ActiveRecord::Schema.define(version: 2018_07_03_104000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "boat_reviews", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.integer "rating"
-    t.bigint "boat_id"
-    t.bigint "user_id"
-    t.bigint "booking_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["boat_id"], name: "index_boat_reviews_on_boat_id"
-    t.index ["booking_id"], name: "index_boat_reviews_on_booking_id"
-    t.index ["user_id"], name: "index_boat_reviews_on_user_id"
-  end
 
   create_table "boats", force: :cascade do |t|
     t.string "title"
@@ -55,6 +41,18 @@ ActiveRecord::Schema.define(version: 2018_07_02_120525) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_boats_on_user_id"
+  end
+
+  create_table "booking_reviews", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "rating"
+    t.bigint "user_id"
+    t.bigint "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_booking_reviews_on_booking_id"
+    t.index ["user_id"], name: "index_booking_reviews_on_user_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -102,10 +100,9 @@ ActiveRecord::Schema.define(version: 2018_07_02_120525) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "boat_reviews", "boats"
-  add_foreign_key "boat_reviews", "bookings"
-  add_foreign_key "boat_reviews", "users"
   add_foreign_key "boats", "users"
+  add_foreign_key "booking_reviews", "bookings"
+  add_foreign_key "booking_reviews", "users"
   add_foreign_key "bookings", "boats"
   add_foreign_key "bookings", "users"
   add_foreign_key "user_reviews", "bookings"
