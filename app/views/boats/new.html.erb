@@ -1,17 +1,23 @@
-<h1>Boats#new</h1>
-<p>Find me in app/views/boats/new.html.erb</p>
 
-<%= form_for(@boat) do |f| %>
-  <%= f.label :title, as: :string %>
-  <%= f.text_field :title, as: :string %>
-  <%= f.label :description, as: :string %>
-  <%= f.text_field :description, as: :string %>
-  <%= f.label :city, as: :string %>
-  <%= f.text_field :city, as: :string %>
-  <%= f.label :person_capacity, as: :integer %>
-  <%= f.text_field :person_capacity, as: :integer %>
-  <%= f.label :price, as: :integer %>
-  <%= f.text_field :price, as: :integer %>
+<% if user_signed_in? %>
 
-  <%= f.submit %>
+  <h1>Boats#new</h1>
+  <p>Find me in app/views/boats/new.html.erb</p>
+
+  <%= form_for(@boat) do |f| %>
+    <%= f.label :title, as: :string %>
+    <%= f.text_field :title, as: :string %>
+    <%= f.label :description, as: :string %>
+    <%= f.text_field :description, as: :string %>
+    <%= f.label :city, as: :string %>
+    <%= f.text_field :city, as: :string %>
+    <%= f.label :person_capacity, as: :integer %>
+    <%= f.text_field :person_capacity, as: :integer %>
+    <%= f.label :price, as: :integer %>
+    <%= f.text_field :price, as: :integer %>
+
+    <%= f.submit %>
+  <% end %>
+<% else %>
+  <% %>
 <% end %>
