@@ -1,5 +1,7 @@
 class BoatsController < ApplicationController
   def index
+
+   raise
   end
 
   def show
