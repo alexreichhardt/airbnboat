@@ -1,12 +1,9 @@
 <h2>hello guys</h2>
 
-
-
-
-
 <%= simple_form_for :q, url: boats_path, :method => :get do |f| %>
   <%= f.input :location, as: :string %>
   <%= f.input :person, as: :integer %>
   <%= f.input :time, as: :datetime %>
   <%= f.submit %>
+
 <% end %>
