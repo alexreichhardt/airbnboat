@@ -6,9 +6,10 @@
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-    <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-    <%= link_to 'Log in', new_user_registration_path %>
-    <%= link_to 'Add boat', new_boat_path %>
-
+    <div class="btns">
+    <%= link_to "Log out", destroy_user_session_path, class: "btn-navbar", method: :delete %>
+    <%= link_to 'Log in', new_user_registration_path, class: "btn-navbar" %>
+    <%= link_to 'Add boat', new_boat_path,class: "btn-navbar" %>
+    </div>
   </div>
 
