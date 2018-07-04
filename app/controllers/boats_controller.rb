@@ -26,6 +26,16 @@ class BoatsController < ApplicationController
       @search_capacity = person_number_limit
       @boats = boats_with_person_cap_at_loc
     end
+
+    # map:
+
+    @cboats = @boats.where.not(latitude: nil, longitude: nil)
+    @markers = @cboats.map do |boat|
+      {
+        lat: boat.latitude,
+        lng: boat.longitude
+      }
+    end
   end
 
   def show
@@ -33,6 +43,12 @@ class BoatsController < ApplicationController
     @start_date = params[:start_date]
     @end_date = params[:end_date]
     @boat = Boat.find(params[:id])
+
+     @marker =
+      [{
+        lat: @boat.latitude,
+        lng: @boat.longitude
+      }]
   end
 
   def new
