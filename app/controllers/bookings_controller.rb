@@ -7,31 +7,39 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @booking = Booking.find(params[:id])
   end
 
   def new
 
-    @booking = Booking.new
-    @boat = Boat.find(params[:boat_id])
-    @start_date = params[:start_date]
-    @end_date = params[:end_date]
+    boat = Boat.find(params[:boat_id])
+    start_date = params[:start_date]
+    end_date = params[:end_date]
+    @persons_going = params[:persons_going]
+    price = (boat.price.to_i * (end_date.to_date - start_date.to_date)).to_i
+    @booking = Booking.new(user_id: current_user.id,
+                            boat_id: boat.id,
+                            start_date: start_date,
+                            end_date: end_date,
+                            price: price)
 
   end
 
   def create
-    @booking = Booking.new(user_id: current_user.id,
+
+    booking = Booking.new(user_id: current_user.id,
                             boat_id: params[:boat_id],
-                            start_date: params[:booking][:start_date],
-                            end_date: params[:booking][:end_date],
-                            license: params[:booking][:license])
-    @booking.save
+                            start_date: params[:start_date],
+                            end_date: params[:end_date],
+                            price: params[:end_date]
+                            )
+    booking.save
 
 
-    redirect_to boat_booking_path(params[:boat_id], @booking.id)
-    raise
+    redirect_to boat_booking_path(params[:boat_id], booking.id)
   end
 
-  def destroy # called from user profile?
+  def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
 
