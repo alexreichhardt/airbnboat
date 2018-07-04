@@ -39,16 +39,24 @@ class BoatsController < ApplicationController
   end
 
   def show
+    booking_ids = []
+    all_booking_this_boat = Booking.where(boat_id: @boat.id)
+    all_booking_this_boat.each do |booking|
+       booking_ids << booking.id
+    end
+    @reviews = BookingReview.where("booking_id IN (?)", booking_ids)
     @persons_going = params[:persons_going]
     @start_date = params[:start_date]
     @end_date = params[:end_date]
     @boat = Boat.find(params[:id])
+
 
      @marker =
       [{
         lat: @boat.latitude,
         lng: @boat.longitude
       }]
+
   end
 
   def new

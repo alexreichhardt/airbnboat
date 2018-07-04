@@ -6,7 +6,7 @@ class Boat < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_city?
 
   has_many :bookings, dependent: :destroy
-  has_many :boat_reviews, dependent: :destroy
+  has_many :boooking_reviews, through: :bookings, dependent: :destroy
   belongs_to :user
 
   validates :title, presence: true
