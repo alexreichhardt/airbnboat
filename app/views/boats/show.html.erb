@@ -1,7 +1,13 @@
 
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= cl_image_path @boat.photo, crop: :fill %>);">
+  <div class="banner-content">
+    <h1><%= @boat.title %></h1>
+    <a class="btn btn-primary btn-lg">Start now</a>
+  </div>
+</div>
+
+
 <ul>
-  <li><%= cl_image_tag @boat.photo, height: 300, width: 400, crop: :fill %></li>
-  <li>Boat Title: <%= @boat.title %></li>
   <li>Boat Description: <%= @boat.description %></li>
   <li>Boat City: <%= @boat.city %></li>
   <li>Boat Person Capacity: <%= @boat.person_capacity %></li>
@@ -11,6 +17,9 @@
   <% else %>
   <% end %>
 </ul>
+
+
+
 
 <ul>
   <%@reviews.each do |review| %>
@@ -22,12 +31,21 @@
 
 
 <%= link_to "Request Booking", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ) %>
-<%= link_to "Edit Boat",edit_boat_path(@boat.id) %>
-<%= link_to("Delete", boat_path(@boat), method: :delete, data: { confirm: "Are you sure?" }) %>
+
+
+<div class="show-operations-container">                                     
+<% if (user_signed_in? && (current_user.id == @boat.user_id)) %>
+  <%= link_to "Edit Boat", edit_boat_path(@boat.id) %>
+  <%= link_to("Delete", boat_path(@boat), method: :delete, data: { confirm: "Are you sure?" } ) %>
+<% end  %>
+
+</div>
 
 <div
   id="map"
   style="width: 100%;
   height: 600px;"
   data-markers="<%= @marker.to_json %>"
-  ></div>
+  >
+</div>
+

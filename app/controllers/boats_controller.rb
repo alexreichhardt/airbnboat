@@ -63,8 +63,7 @@ class BoatsController < ApplicationController
     if user_signed_in?
       @boat = Boat.new
     else
-      redirect_to new_user_session_path
-
+      redirect_to new_user_session_path(redirect_to: new_boat_path)
     end
   end
 
@@ -76,6 +75,11 @@ class BoatsController < ApplicationController
   end
 
   def edit
+    if user_signed_in? && current_user.id == @boat.user_id
+
+    else
+      redirect_to new_user_session_path(redirect_to: edit_boat_path(@boat.id))
+    end
   end
 
   def update
@@ -85,14 +89,15 @@ class BoatsController < ApplicationController
   end
 
   def destroy
-    @boat.delete
-    redirect_to root_path
+    if user_signed_in? && current_user.id == @boat.user_id
+      @boat.destroy
+      redirect_to root_path
+    else
+      redirect_to new_user_session_path(redirect_to: boat_path(@boat.id))
+    end
   end
 
-
-
   private
-
 
   def find_boat
     @boat = Boat.find(params[:id])
