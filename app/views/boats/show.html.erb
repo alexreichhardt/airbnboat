@@ -18,6 +18,9 @@
   <% end %>
 </ul>
 
+
+
+
 <ul>
   <%@reviews.each do |review| %>
     <li><%= review.title %> </li>
@@ -28,12 +31,21 @@
 
 
 <%= link_to "Request Booking", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ) %>
-<%= link_to "Edit Boat",edit_boat_path(@boat.id) %>
-<%= link_to("Delete", boat_path(@boat), method: :delete, data: { confirm: "Are you sure?" }) %>
+
+
+<div class="show-operations-container">                                     
+<% if (user_signed_in? && (current_user.id == @boat.user_id)) %>
+  <%= link_to "Edit Boat", edit_boat_path(@boat.id) %>
+  <%= link_to("Delete", boat_path(@boat), method: :delete, data: { confirm: "Are you sure?" } ) %>
+<% end  %>
+
+</div>
 
 <div
   id="map"
   style="width: 100%;
   height: 600px;"
   data-markers="<%= @marker.to_json %>"
-  ></div>
+  >
+</div>
+
