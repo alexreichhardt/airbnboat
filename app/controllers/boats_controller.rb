@@ -24,7 +24,11 @@ class BoatsController < ApplicationController
   end
 
   def new
-    @boat = Boat.new
+    if user_signed_in?
+      @boat = Boat.new
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def create
