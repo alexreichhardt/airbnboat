@@ -3,29 +3,35 @@
 
   <h1>Boats#new</h1>
   <p>Find me in app/views/boats/new.html.erb</p>
+  <div class="form-wrapper" style="width: 400px; margin: 0 auto;">
+    <div class="container">
 
-  <div class="container">
-
-  <%= simple_form_for(@boat) do |f| %>
-    <%= f.label :title, as: :string %>
-    <%= f.text_field :title, as: :string %>
-    <%= f.label :description, as: :string %>
-    <%= f.text_field :description, as: :string %>
-
-    <%= f.label :city, as: :string %>
-    <%= f.text_field :city, as: :string,  :id => "criteria_location" %>
-
-
-    <%= f.label :person_capacity, as: :integer %>
-
-    <%= f.text_field :person_capacity, as: :integer %>
-    <%= f.label :price, as: :integer %>
-    <%= f.text_field :price, as: :integer %>
-
-    <%= f.input :photo %>
-    <%= f.input :photo_cache, as: :hidden %>
-    <%= f.submit %>
-
-<% end %>
-
+    <%= simple_form_for(@boat) do |f| %>
+      <div class="form-group">
+        <%= f.label :title, as: :string %>
+        <%= f.text_field :title, as: :string %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description, as: :string %>
+        <%= f.text_field :description, as: :string %>
+      </div>
+      <div class="form-group">
+        <%= f.label :city, as: :string %>
+        <%= f.text_field :city, as: :string,  :id => "criteria_location" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :person_capacity, as: :integer %>
+        <%= f.text_field :person_capacity, as: :integer %>
+      </div>
+      <div class="form-group">
+        <%= f.label :price, as: :integer %>
+        <%= f.text_field :price, as: :integer %>
+      </div>
+      <div class="form-group">
+        <%= f.input :photo %>
+        <%= f.input :photo_cache, as: :hidden %>
+      </div>
+        <%= f.button :submit, "Create Boat", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
