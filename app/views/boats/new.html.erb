@@ -11,9 +11,13 @@
     <%= f.text_field :title, as: :string %>
     <%= f.label :description, as: :string %>
     <%= f.text_field :description, as: :string %>
+
     <%= f.label :city, as: :string %>
-    <%= f.text_field :city, as: :string %>
+    <%= f.text_field :city, as: :string,  :id => "criteria_location" %>
+
+
     <%= f.label :person_capacity, as: :integer %>
+
     <%= f.text_field :person_capacity, as: :integer %>
     <%= f.label :price, as: :integer %>
     <%= f.text_field :price, as: :integer %>
