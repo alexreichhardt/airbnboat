@@ -1,26 +1,22 @@
 
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= cl_image_path @boat.photo, crop: :fill %>);">
-  <div class="banner-content">
+<div class="banner_show" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= cl_image_path @boat.photo, crop: :fill %>);">
+  <div class="banner_show-content">
     <h1><%= @boat.title %></h1>
-    <a class="btn btn-primary btn-lg">Start now</a>
   </div>
 </div>
+<div>
+  <br>
 
-
-<ul>
-  <li>Boat Description: <%= @boat.description %></li>
-  <li>Boat City: <%= @boat.city %></li>
-  <li>Boat Person Capacity: <%= @boat.person_capacity %></li>
-  <li>Boat Price: <%= @boat.price %></li>
+  <p>Boat Description: <%= @boat.description %></p>
+  <p>Boat City: <%= @boat.city %></p>
+  <p>Boat Person Capacity: <%= @boat.person_capacity %></p>
+  <p>Boat Price: <%= @boat.price %></p>
   <% if params.has_key?(:capacity) %>
-  <li><%= link_to "Go Back Results", boats_path(id: @boat.id, capacity: params[:capacity], start_date: @start_date, end_date: @end_date, persons_going: @persons_going) %></li>
+  <p><%= link_to "Go Back Results", boats_path(id: @boat.id, capacity: params[:capacity], start_date: @start_date, end_date: @end_date, persons_going: @persons_going), class: "btn-medium" %></p>
   <% else %>
   <% end %>
-</ul>
-
-
-
-
+</div>
+<div>
 <ul>
   <%@reviews.each do |review| %>
     <li><%= review.title %> </li>
@@ -28,19 +24,23 @@
     <li><%= review.rating %> </li>
   <%end%>
 </ul>
-
-
-<%= link_to "Request Booking", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ) %>
-
-
-<div class="show-operations-container">                                     
-<% if (user_signed_in? && (current_user.id == @boat.user_id)) %>
-  <%= link_to "Edit Boat", edit_boat_path(@boat.id) %>
-  <%= link_to("Delete", boat_path(@boat), method: :delete, data: { confirm: "Are you sure?" } ) %>
-<% end  %>
-
+</div>
+<br>
+<div class="btns">
+<%= link_to "Request Booking", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ), class: "btn-medium" %>
 </div>
 
+<div>
+<br>
+</div>
+
+<div class="show-operations-container ">
+<% if (user_signed_in? && (current_user.id == @boat.user_id)) %>
+  <%= link_to "Edit Boat", edit_boat_path(@boat.id), class: "btn-medium" %>
+  <%= link_to "Delete", boat_path(@boat, method: :delete, data: { confirm: "Are you sure?" } ), class: "btn-medium" %>
+<% end  %>
+</div>
+<br>
 <div
   id="map"
   style="width: 100%;
