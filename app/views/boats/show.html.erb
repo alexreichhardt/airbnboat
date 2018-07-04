@@ -9,7 +9,7 @@
   <li><%= cl_image_tag @boat.photo, height: 300, width: 400, crop: :fill %></li>
 
   <% if params.has_key?(:capacity) %>
-  <li><%= link_to "Go Back Results", boats_path(id: @boat.id, capacity: params[:capacity]) %></li>
+  <li><%= link_to "Go Back Results", boats_path(id: @boat.id, capacity: params[:capacity], start_date: @start_date, end_date: @end_date, persons_going: @persons_going) %></li>
   <% else %>
   <% end %>
 </ul>
