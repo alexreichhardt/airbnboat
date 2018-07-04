@@ -1,63 +1,65 @@
-hey <%= @user.email%>
-<%= link_to "Change your password", edit_user_registration_path %>
+
 
 
 <div class="grid">
 
 
-  <div class="bookings">
-
-
+  <div class="profile-info">
+      <div class="card1">
+        <h2> hey <%= @user.email%> </h2>
+        <p><%= link_to "Change your password", edit_user_registration_path %></p>
+      </div>
   </div>
 
-  <div class="boats">
+
+  <div class="boats-bookings">
+
     <% if @boats.any? %>
-    <% @boats.each do |boat| %>
-    <p><%= boat.title %></p>
-    <p><%= boat.description %></p>
-    <p><%= boat.city %></p>
-    <p><%= boat.person_capacity %></p>
-    <%= link_to("Show Boat", boat_path(boat)) %>
-    <%= link_to("Edit Boat", edit_boat_path(boat)) %>
-    <%= link_to("Delete", boat_path(boat), method: :delete, data: { confirm: "Are you sure?" }) %>
-  <% end %>
+      <% @boats.each do |boat| %>
+        <div class="card1">
+          <h1><%= boat.title %></h1>
+          <h3><%= boat.description %></h3>
+          <p>City: <%= boat.city %></p>
+          <p>Person Capacity: <%= boat.person_capacity %></p>
+          <%= link_to("Show Boat", boat_path(boat), :class => "btn btn-primary") %>
+          <%= link_to("Edit Boat", edit_boat_path(boat) , :class => "btn btn-warning") %>
+          <%= link_to("Delete", boat_path(boat), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-danger") %>
+        </div>
+      <% end %>
     <% else %>
-      no boats
+      <div class="card1">
+        no boats
+      </div>
+    <% end %>
+
+    <% if @bookings.any?  %>
+      <% @bookings.each do |booking| %>
+        <div class="card1">
+        <p><%= @user.email %></p>
+        <p><%= Boat.find(booking.boat_id).title %></p>
+        <p><%= Boat.find(booking.boat_id).description %></p>
+        <p><%= booking.start_date %></p>
+        <p><%= booking.end_date %></p>
+        <p><%= booking.license %></p>
+
+        <% if BookingReview.where(booking_id: booking.id).first.nil? %>
+          <%= link_to("Add review", new_booking_booking_review_path(booking.id)) %>
+        <% else %>
+          <%= link_to("Show review", booking_booking_review_path(booking.id, BookingReview.where(booking_id: booking.id).first.id)) %>
+        <% end %>
+        </div>
+      <% end %>
+
+    <% else %>
+      <div class="card1">
+        no bookings
+      </div>
     <% end %>
 
 
-  </div>
 
 
 
-</div>
 
 
-<div class="container">
-<% if @bookings.any?  %>
-  <% @bookings.each do |booking| %>
 
-
-    <p><%= @user.email %></p>
-    <p><%= Boat.find(booking.boat_id).title %></p>
-    <p><%= Boat.find(booking.boat_id).description %></p>
-    <p><%= booking.start_date %></p>
-    <p><%= booking.end_date %></p>
-    <p><%= booking.license %></p>
-    <% if BookingReview.where(booking_id: booking.id).first.nil? %>
-      <%= link_to("Add review", new_booking_booking_review_path(booking.id)) %>
-    <% else %>
-
-      <%= link_to("Show review", booking_booking_review_path(booking.id, BookingReview.where(booking_id: booking.id).first.id)) %>
-    <% end %>
-
-  <% end %>
-<% else %>
-  no bookings
-<% end %>
-</div>
-
-<div class="boats">
-
-
-</div>
