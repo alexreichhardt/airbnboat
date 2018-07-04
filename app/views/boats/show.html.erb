@@ -14,8 +14,13 @@
   <% end %>
 </ul>
 
+<div class="show-operations-container">
 
-<%= link_to "Request Booking", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ) %>
-<%= link_to "Edit Boat",edit_boat_path(@boat.id) %>
-<%= link_to("Delete", boat_path(@boat), method: :delete, data: { confirm: "Are you sure?" }) %>
+    <%= link_to "Request Booking", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ) %>
 
+<% if (user_signed_in? && (current_user.id == @boat.user_id)) %>
+  <%= link_to "Edit Boat", edit_boat_path(@boat.id) %>
+  <%= link_to("Delete", boat_path(@boat), method: :delete, data: { confirm: "Are you sure?" } ) %>
+<% end  %>
+
+</div>

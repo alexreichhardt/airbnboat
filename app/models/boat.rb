@@ -3,7 +3,6 @@ class Boat < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
   has_many :bookings, dependent: :destroy
-  has_many :boat_reviews, dependent: :destroy
   belongs_to :user
 
   validates :title, presence: true
