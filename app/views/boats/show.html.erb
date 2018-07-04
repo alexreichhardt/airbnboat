@@ -1,6 +1,5 @@
 <h1>Boats#show</h1>
 <p>Find me in app/views/boats/show.html.erb</p>
-
 <ul>
   <li>Boat Title: <%= @boat.title %></li>
   <li>Boat Description: <%= @boat.description %></li>
@@ -16,7 +15,7 @@
 </ul>
 
 
-<%= link_to "Request Booking", new_boat_booking_path(@boat, price: "hi", capacity: @boat.person_capacity ) %>
+<%= link_to "Request Booking", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ) %>
 <%= link_to "Edit Boat",edit_boat_path(@boat.id) %>
 <%= link_to("Delete", boat_path(@boat), method: :delete, data: { confirm: "Are you sure?" }) %>
 

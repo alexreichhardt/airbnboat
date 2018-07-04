@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_04_092255) do
-
+ActiveRecord::Schema.define(version: 2018_07_04_095601) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,6 +63,7 @@ ActiveRecord::Schema.define(version: 2018_07_04_092255) do
     t.string "license"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price"
     t.index ["boat_id"], name: "index_bookings_on_boat_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end

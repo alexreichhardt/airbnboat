@@ -5,7 +5,7 @@
   <div class="form-wrapper" style="width: 400px; margin: 0 auto;">
     <h2>Flatpickr Demo</h2>
 
-    <%= simple_form_for :q, url: boats_path, :method => :get do |f| %>
+    <%= simple_form_for :criteria, url: boats_path, :method => :get do |f| %>
        <%= f.input :location, as: :string %>
       <%= f.input :person, as: :integer %>
       <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker"} %>

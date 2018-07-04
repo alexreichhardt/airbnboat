@@ -2,9 +2,12 @@ class BoatsController < ApplicationController
   before_action :find_boat, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params.has_key?(:q)
-      location = params[:q][:location]
-      person_number_limit = params[:q][:person].to_i - 1
+    @start_date = params[:criteria][:starts_at]
+    @end_date = params[:criteria][:ends_at]
+    @persons_going = person_number_limit = params[:criteria][:person].to_i
+    if params.has_key?(:criteria)
+      location = params[:criteria][:location]
+      person_number_limit = params[:criteria][:person].to_i - 1
       boats_at_loc = Boat.all.where(city: location)
       boats_with_person_cap_at_loc = boats_at_loc.where("person_capacity > ?", person_number_limit)
       @boats = boats_with_person_cap_at_loc
@@ -20,6 +23,9 @@ class BoatsController < ApplicationController
   end
 
   def show
+    @persons_going = params[:persons_going]
+    @start_date = params[:start_date]
+    @end_date = params[:end_date]
     @boat = Boat.find(params[:id])
   end
 

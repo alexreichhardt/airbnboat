@@ -1,10 +1,15 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<h1>Thank you for booking! Have a nice Trip!</h1>
+<h2>Your booking overview</h2>
+<div class="container">
 
+  <p> Your booking ID is <%= @booking.id %> </p>
+  <div>
+    <p>Price: <%= @booking.price  %></p>
+    <p>Persons going: <%= @persons_going %></p>
+    <p>Capacity:<%= @booking.boat.person_capacity %></p>
+    <p>Start date: <%= @booking.start_date %></p>
+    <p>End date: <%= @booking.end_date %> </p>
+  </div>
+</div>
 
-<h1>Thank you for booking!</h1>
-
-<p> Your booking ID is <%= @booking.id %> </p>
-
-
-
+<%= link_to "All Bookings", user_path(current_user.id)  %>
