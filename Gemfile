@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.4.4'
+gem 'cloudinary'
 gem 'devise'
+gem 'carrierwave', '~> 1.2'
 gem 'bootsnap', require: false
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
@@ -19,7 +21,10 @@ gem 'webpacker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
+
 
 group :development, :test do
   gem 'pry-byebug'

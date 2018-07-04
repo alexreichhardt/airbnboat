@@ -1,29 +1,15 @@
-<h1>Bookings#new</h1>
-<p>Find me in app/views/bookings/new.html.erb</p>
-
 
 <div class="container">
   <h1>Your booking overview</h1>
 
   <div>
-    <p>Price: <%=  @boat.price %></p>
-    <p>Capacity:<%= @boat.person_capacity  %></p>
-    <p> start date: 02/02/2017</p>
-    <p> END date: 02/02/2018</p>
+    <p>Price: <%= @booking.price  %></p>
+    <p>Persons going: <%= @persons_going %></p>
+    <p>Capacity:<%= @booking.boat.person_capacity %></p>
+    <p>Start date: <%= @booking.start_date %></p>
+    <p>End date: <%= @booking.end_date %> </p>
 
-    <p>This is the start date</p>
-    <%= @start_date  %>
-
-    <%= link_to "create", boat_bookings_path(@boat.id, start_date: @start_date, end_date: @end_date), method: :post  %>
-
+    <%= link_to "Agree and Confirm Booking", boat_bookings_path(@booking.boat_id, price: @booking.price, start_date: @booking.start_date, end_date: @booking.end_date), method: :post  %>
   </div>
+</div>
 
-  </div>
-
-  <!-- (@boat_id, start_date: @start_date, end_date: @end_date)
-
-
-boat_bookings_
-
-
-link_to "Profile", profile_path(@profile.id, param1: 'value1', param2: 'value2'), method: :post
