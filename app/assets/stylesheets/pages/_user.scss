@@ -2,16 +2,28 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 600px 1fr;
+  grid-template-columns: 900px 1fr;
   grid-template-rows: 25% 25% 25% 25%;
 }
 
 
-.bookings {
+.boat-bookings {
 
+  grid-row:1;
+  grid-column: 1 / span 1;
 
 }
 
-.boats {
+.profile-info {
+  grid-row: 1;
+  grid-column: 2 / span 2
+}
+
+
+.card1 {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  border: 1px solid grey;
+  padding: 15px;
 
 }
