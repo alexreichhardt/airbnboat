@@ -23,8 +23,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :city %>
-    <%= f.text_field :city, class: 'form-control' %>
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
   </div>
   <%= f.submit class: 'btn btn-primary' %>
 <% end %>
