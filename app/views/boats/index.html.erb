@@ -9,6 +9,7 @@ hi sdf
   <li>Boat Person Capacity: <%= boat.person_capacity %></li>
   <li>Boat Price: <%= boat.price %></li>
   <li><%= link_to "Details", boat_path(boat, capacity: @search_capacity) %></li>
+  <li><%= cl_image_tag boat.photo, height: 300, width: 400, crop: :fill %></li>
 </ul>
 
 <% end %>
