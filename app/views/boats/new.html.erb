@@ -4,7 +4,9 @@
   <h1>Boats#new</h1>
   <p>Find me in app/views/boats/new.html.erb</p>
 
-  <%= form_for(@boat) do |f| %>
+  <div class="container">
+
+  <%= simple_form_for(@boat) do |f| %>
     <%= f.label :title, as: :string %>
     <%= f.text_field :title, as: :string %>
     <%= f.label :description, as: :string %>
@@ -16,6 +18,10 @@
     <%= f.label :price, as: :integer %>
     <%= f.text_field :price, as: :integer %>
 
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
     <%= f.submit %>
 
-<%end %>
+<% end %>
+
+</div>
