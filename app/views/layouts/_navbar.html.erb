@@ -1,15 +1,40 @@
-<div class="navbar-wagon">
+<div class="navbar-airnbboat">
   <!-- Logo -->
-  <a href="/">
-    <img src="" alt="logo">
+  <a href="/" class="navbar-airnbboat-brand">
+    <img src="images/logo.png" alt="logo">
   </a>
 
   <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
-    <div class="btns">
-    <%= link_to "Log out", destroy_user_session_path, class: "btn-navbar", method: :delete %>
-    <%= link_to 'Log in', new_user_registration_path, class: "btn-navbar" %>
-    <%= link_to 'Add boat', new_boat_path,class: "btn-navbar" %>
+  <div class="navbar-airnbboat-right hidden-xs hidden-sm">
+    <%= link_to 'Log in', new_user_registration_path, class: "navbar-airnbboat-item navbar-airnbboat-link"%>
+    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "navbar-airnbboat-item navbar-airnbboat-link"%>
+    <%= link_to 'Add boat', new_boat_path, class: "navbar-airnbboat-item navbar-airnbboat-link"%>
+
+    <!-- Profile picture with dropdown list -->
+    <div class="navbar-airnbboat-item">
+      <div class="dropdown">
+        <img src="https://kitt.leairnbboat.com/placeholder/users/ssaunier" class="avatar dropdown-toggle" id="navbar-airnbboat-menu" data-toggle="dropdown">
+        <ul class="dropdown-menu dropdown-menu-right navbar-airnbboat-dropdown-menu">
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Log Out</a></li>
+        </ul>
+      </div>
     </div>
   </div>
+
+  <!-- Dropdown appearing on mobile only -->
+  <div class="navbar-airnbboat-item hidden-md hidden-lg">
+    <div class="dropdown">
+      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+      <ul class="dropdown-menu dropdown-menu-right navbar-airnbboat-dropdown-menu">
+        <li><a href="#">Host</a></li>
+        <li><a href="#">Trips</a></li>
+        <li><a href="#">Messagese</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
 
