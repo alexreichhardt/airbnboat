@@ -1,6 +1,7 @@
 class BookingReview < ApplicationRecord
   belongs_to :user
   belongs_to :booking
+  # belongs_to :boat, through: :bookings
   validates :title, presence: true
   # validates :content, presence: true
   # validates :rating, presence: true

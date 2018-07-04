@@ -1,16 +1,26 @@
 
 <% @boats.each do |boat| %>
-<ul>
-  <li>Boat Title: <%= boat.title %></li>
-  <li>Boat Description: <%= boat.description %></li>
-  <li>Boat City: <%= boat.city %></li>
-  <li>Boat Person Capacity: <%= boat.person_capacity %></li>
-  <li>Boat Price: <%= boat.price %></li>
-  <li><%= link_to "Details", boat_path(boat, capacity: @search_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ) %></li>
-  <li><%= cl_image_tag boat.photo, height: 300, width: 400, crop: :fill %></li>
-  <br>
-  <hr>
-
-</ul>
-
+  
+<div>
+  <ul>
+    <li>Boat Title: <%= boat.title %></li>
+    <li>Boat Description: <%= boat.description %></li>
+    <li>Boat City: <%= boat.city %></li>
+    <li>Boat Person Capacity: <%= boat.person_capacity %></li>
+    <li>Boat Price: <%= boat.price %></li>
+    <li><%= link_to "Details", boat_path(boat, capacity: @search_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ) %></li>
+    <li><%= cl_image_tag boat.photo, height: 300, width: 400, crop: :fill %></li>
+    
+    <br>
+    <hr>
+  </ul>
+</div>
 <% end %>
+
+
+<div
+  id="map"
+  style="width: 100%;
+  height: 600px;"
+  data-markers="<%= @markers.to_json %>"
+  ></div>
