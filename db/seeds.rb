@@ -17,7 +17,7 @@ end
 
 
 
-cities = ["Istanbul", "Milano", "Como", "Paris","Milano","Milano"]
+cities = ["Milano"]
 photos = ["boat1.jpg", "boat2.jpg"]
 
 8.times do |i|
@@ -26,18 +26,17 @@ photos = ["boat1.jpg", "boat2.jpg"]
   boat.save
 end
 
-# booking = Booking.create(user_id: user2.id, boat_id: boat1.id)
-# review = BookingReview.create(title: "hi", user_id: user2.id, booking_id: booking.id)
+10.times do
+  booking = Booking.create(user_id: User.all.pluck(:id).sample, boat_id: Boat.all.pluck(:id).sample, start_date: "2018-07-27", end_date: "2018-08-29", price: rand(500..10000))
+  booking.save
+end
 
-# puts "booking.id:"
-# puts booking.id
+user_ids = []
+Booking.all.each do |booking|
+  user_ids << booking.user_id
+end
+15.times do
+  review = BookingReview.create(title: "nice cruise", content: "dummy text ever since the 1500 dummy text ever since the 1500 dummy text ever since the 1500", rating: rand(1..5), user_id:  user_ids.sample, booking_id:  Booking.all.pluck(:id).sample)
+  review.save
 
-# puts "Owner:"
-# puts booking.owner_user.email # dam@dln.name
-
-# puts "Booker:"
-# puts booking.user.email # dam2@dln.name
-
-# puts "review:"
-# puts review.user.email
-# puts review.booking.id
+end
