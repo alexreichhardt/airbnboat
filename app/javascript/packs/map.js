@@ -109,9 +109,6 @@ map.setOptions({
 }
 
 
-
-
-
 import { autocomplete } from '../components/autocomplete';
 
 // [...]
