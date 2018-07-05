@@ -17,7 +17,8 @@
                 <p> <%= boat.person_capacity %></p>
               </div>
               <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
-                <%= link_to "", boat_path(boat, capacity: @search_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ), class: "card-link" %>
+
+                <%= link_to "", boat_path(boat, capacity: @search_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: @location ), class: "card-link" %>
 
             </div>
 
@@ -40,6 +41,7 @@
               <% end %>
 
               <p> <%= boat.avg_rating || "No ratings yet" %></p>
+
             </div>
 
         </div>
