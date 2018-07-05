@@ -12,26 +12,27 @@
   padding: 6px 10px;
   border-radius: 4px;
   font-size: 18px;
-  color: $gray;
+  color: rgba(36, 36, 36, 0.8);
   margin-left:16px;
   background-color: $light-gray;
 
   &:hover {
     color: $light-blue;
-    background-color: white;
+
     border-color: $light-blue;
   }
 }
 
 #price {
-  color: $gray;
+  color: rgba(36, 36, 36, 0.8);
+
   padding: 4px 9px;
   border-radius: 4px;
   background-color: $light-gray;
 
   &:hover {
     color: $light-blue;
-    background-color: white;
+
     border-color: $light-blue;
   }
 }
