@@ -1,20 +1,42 @@
 
+  <div class="filter-top">
 
 
-<div class="main-container">
+    <div class="price-filter">
+          <%= form_tag boats_path, method: :get do %>
+    <div class="dropdown">
+    <%= select_tag("price", "<option>100</option><option>500</option><option>750</option><option>1000</option>".html_safe, :class=>"form-control") %>
 
-  <div class="filter-bar">
-    <%= form_tag boats_path, method: :get do %>
-    <%= select_tag "price", "<option>100</option><option>500</option><option>750</option><option>1000</option>".html_safe%>
+
+
+    </div>
     <%= hidden_field_tag :pricefilter, "yes" %>
     <%= hidden_field_tag :start_date, @start_date %>
     <%= hidden_field_tag :end_date, @end_date %>
     <%= hidden_field_tag :location, @location %>
     <%= hidden_field_tag :persons_going, @persons_going %>
     <%= hidden_field_tag :capacity, @search_capacity %>
-    <div><%= submit_tag 'Save' %></div>
+    </div>
+    <div><%= submit_tag("Apply filter", :class=>"btn-filter")%></div>
     <% end %>
+
+
+
   </div>
+
+<div class="main-container">
+
+
+
+
+
+<div class="map-card-container">
+
+
+
+
+
+
 
   <div class="cards-container">
     <div class="row">
@@ -73,7 +95,6 @@
 
 
     </div>
-
   </div>
 
   <div
@@ -86,6 +107,5 @@
 
 </div>
 
-
-
+</div>
 
