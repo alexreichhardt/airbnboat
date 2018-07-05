@@ -1,107 +1,83 @@
 
-  <div class="filter-top">
-
-
-    <div class="price-filter">
-          <%= form_tag boats_path, method: :get do %>
-    <div class="dropdown">
-    <%= select_tag("price", "<option>100</option><option>500</option><option>750</option><option>1000</option>".html_safe, :class=>"form-control") %>
-
-
-
-    </div>
-    <%= hidden_field_tag :pricefilter, "yes" %>
-    <%= hidden_field_tag :start_date, @start_date %>
-    <%= hidden_field_tag :end_date, @end_date %>
-    <%= hidden_field_tag :location, @location %>
-    <%= hidden_field_tag :persons_going, @persons_going %>
-    <%= hidden_field_tag :capacity, @person_number_limit %>
+<div class="filter-top">
+  <div class="price-filter">
+    <%= form_tag boats_path, method: :get do %>
+      <div class="dropdown">
+        <%= select_tag("price", "<option>100</option><option>500</option><option>750</option><option>1000</option>".html_safe, :class=>"form-control") %>
+      </div>
+      <%= hidden_field_tag :pricefilter, "yes" %>
+      <%= hidden_field_tag :start_date, @start_date %>
+      <%= hidden_field_tag :end_date, @end_date %>
+      <%= hidden_field_tag :location, @location %>
+      <%= hidden_field_tag :persons_going, @persons_going %>
+      <%= hidden_field_tag :capacity, @person_number_limit %>
     </div>
     <div><%= submit_tag("Apply filter", :class=>"btn-filter")%></div>
     <% end %>
-
-
-
   </div>
 
 <div class="main-container">
-
-
-
-
-
-<div class="map-card-container">
-
-
-  <div class="cards-container">
-    <div class="row">
-
+  <div class="map-card-container">
+    <div class="cards-container">
+      <div class="row">
         <% @boats.each_with_index do |boat, i| %>
-        <div class="col-xs-12 col-sm-6">
-          <div class="card-outter">
+          <div class="col-xs-12 col-sm-6">
+            <div class="card-outter">
+              <%= link_to "", boat_path(boat, capacity: @person_number_limit, start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: @location, price: @price ), class: "card-link" %>
 
-          <%= link_to "", boat_path(boat, capacity: @person_number_limit, start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: @location, price: @price ), class: "card-link" %>
+              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path(boat.photo) %>);">
+                <div class="card-category">
+                  <h3>€<%= boat.price %></h3><p>per day</p> </div>
+                  <div class="card-description">
+                    <h2> <%= boat.name %> </h2>
+                    <p> <%= boat.person_capacity %> guests</p>
+                  </div>
+                  <img class="card-user" <%= cl_image_tag(boat.owner[0].avatar) %> >
+                </div>
 
-
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path(boat.photo) %>);">
-              <div class="card-category">
-                <h3>€<%= boat.price %></h3><p>per day</p> </div>
-              <div class="card-description">
-                <h2> <%= boat.name %> </h2>
-                <p> <%= boat.person_capacity %> guests</p>
-              </div>
-              <img class="card-user" <%= cl_image_tag(boat.owner[0].avatar) %>
-            </div>
-
-
-
-
-          <!-- card footer -->
-            <div class="card-footer">
-
-              <h2>  <%= boat.title %> </h2>
-
-              <% if boat.avg_rating.class == Float %>
+              <!-- card footer -->
+              <div class="card-footer">
+                <h2>  <%= boat.title %> </h2>
+                <% if boat.avg_rating.class == Float %>
                 <% t = boat.avg_rating.to_i %>
                 <div class="ratings">
                   <div class="stars">
-                <% t.times do %>
-                  <i class="fas fa-star"></i>
+                    <% t.times do %>
+                    <i class="fas fa-star"></i>
+                    <% end %>
+                    <% (5-t).times do %>
+                    <i class="far fa-star"></i>
                 <% end %>
-                <% (5-t).times do %>
-
-                  <i class="far fa-star"></i>
                   </div>
                   <p> (<%= boat.total_rating %>)</p>
                 </div>
-                <% end %>
-              <% else %>
+                <% else %>
                 <p>No ratings yet</p>
 
-              <% end %>
+                <% end %>
 
 
 
 
+              </div>
             </div>
-            </div>
+
+          </div>
+          <% end %>
+
 
         </div>
-        <% end %>
+      </div>
 
-
+      <div
+      id="map"
+      style="width: 100%;
+      height: 600px;"
+      data-markers="<%= @markers.to_json %>"
+      >
     </div>
-  </div>
 
-  <div
-  id="map"
-  style="width: 100%;
-  height: 600px;"
-  data-markers="<%= @markers.to_json %>"
-  >
   </div>
-
-</div>
 
 </div>
 
