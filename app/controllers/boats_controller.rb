@@ -7,6 +7,7 @@ class BoatsController < ApplicationController
       @start_date = params[:criteria][:starts_at]
       @end_date = params[:criteria][:ends_at]
       @persons_going = params[:criteria][:person].to_i
+
       person_number_limit = params[:criteria][:person].to_i - 1
 
       #Limiting the Location
@@ -32,6 +33,7 @@ class BoatsController < ApplicationController
       # boats_with_person_cap_at_loc = boats_at_loc.where("person_capacity > ?", person_number_limit)
       # @boats = boats_with_person_cap_at_loc
       # @search_capacity = person_number_limit
+
     else
       @start_date = params[:start_date]
       @end_date = params[:end_date]
@@ -56,6 +58,7 @@ class BoatsController < ApplicationController
       @search_capacity = person_number_limit
     end
 
+
     # map:
     @cboats = @boats.where.not(latitude: nil, longitude: nil)
     @markers = @cboats.map do |boat|
@@ -64,6 +67,9 @@ class BoatsController < ApplicationController
         lng: boat.longitude
       }
     end
+
+
+
   end
 
   def show
