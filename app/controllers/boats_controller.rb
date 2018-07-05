@@ -21,10 +21,14 @@ class BoatsController < ApplicationController
       to = Date.parse(@end_date)
       ##1Step: Joining boats & bookings Table
       ##2Step: Extracting all IDs which lie within the given start and end date
-      booked_boat_ids = @boats.joins(:bookings).where(("(bookings.start_date < :sd AND bookings.end_date > :sd) OR (bookings.start_date < :ed AND bookings.end_date > :ed)"), sd: from, ed: to).uniq.pluck(:id)
+      booked_boat_ids = @boats.joins(:bookings).where("(bookings.start_date < :sd AND bookings.end_date > :sd) OR (bookings.start_date < :ed AND bookings.end_date > :ed)", sd: from, ed: to).uniq.pluck(:id)
       ##3Step: Saving all boats which ID's are not included in the "booked_boats_ids"
       @boats = @boats.where.not(id: booked_boat_ids)
 
+      #Filtering for Boat Availabilty
+      boats_available = @boats.where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date < :sd AND end_date > :ed", sd: from, ed: to).uniq.pluck(:id)
+
+      @boats = @boats.where(id: boats_available)
       #Filtering for Person Capacity
       @boats = @boats.where("person_capacity > ?", person_number_limit)
 
@@ -55,7 +59,8 @@ class BoatsController < ApplicationController
       booked_boat_ids = @boats.joins(:bookings).where(("(bookings.start_date < :sd AND bookings.end_date > :sd) OR (bookings.start_date < :ed AND bookings.end_date > :ed)"), sd: from, ed: to).uniq.pluck(:id)
       ##3Step: Saving all boats which ID's are not included in the "booked_boats_ids"
       @boats = @boats.where.not(id: booked_boat_ids)
-
+      boats_available = @boats.where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date < :sd AND end_date > :ed", sd: from, ed: to).uniq.pluck(:id)
+      @boats = @boats.where(id: boats_available)
       #Filtering for Person Capacity
       @boats = @boats.where("person_capacity > ?", person_number_limit)
 
@@ -81,6 +86,8 @@ class BoatsController < ApplicationController
       ##1Step: Joining boats & bookings Table
       ##2Step: Extracting all IDs which lie within the given start and end date
       booked_boat_ids = @boats.joins(:bookings).where(("(bookings.start_date < :sd AND bookings.end_date > :sd) OR (bookings.start_date < :ed AND bookings.end_date > :ed)"), sd: from, ed: to).uniq.pluck(:id)
+      boats_available = @boats.where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date < :sd AND end_date > :ed", sd: from, ed: to).uniq.pluck(:id)
+      @boats = @boats.where(id: boats_available)
       ##3Step: Saving all boats which ID's are not included in the "booked_boats_ids"
       @boats = @boats.where.not(id: booked_boat_ids)
 
@@ -106,11 +113,11 @@ class BoatsController < ApplicationController
       }
     end
 
-
-
-
-
   end
+
+
+
+
 
   def show
 
@@ -180,6 +187,6 @@ class BoatsController < ApplicationController
   end
 
   def boat_params
-    params.require(:boat).permit(:title, :description, :city, :person_capacity, :price, :photo)
+    params.require(:boat).permit(:title, :description, :city, :person_capacity, :price, :photo, :start_date, :end_date)
   end
 end
