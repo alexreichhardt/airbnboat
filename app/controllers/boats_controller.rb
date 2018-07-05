@@ -28,6 +28,7 @@ class BoatsController < ApplicationController
     end
 
 
+
     # map:
 
     @cboats = @boats.where.not(latitude: nil, longitude: nil)
@@ -37,6 +38,8 @@ class BoatsController < ApplicationController
         lng: boat.longitude
       }
     end
+
+
 
 
 
