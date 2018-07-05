@@ -10,7 +10,7 @@ class BoatsController < ApplicationController
 
       @location = params[:criteria][:location]
 
-      person_number_limit = params[:criteria][:person].to_i - 1
+      @person_number_limit = params[:criteria][:person].to_i
 
       #Limiting the Location
       @boats = Boat.near(params[:criteria][:location], 10)
@@ -30,7 +30,7 @@ class BoatsController < ApplicationController
 
       @boats = @boats.where(id: boats_available)
       #Filtering for Person Capacity
-      @boats = @boats.where("person_capacity > ?", person_number_limit)
+      @boats = @boats.where("person_capacity >= ?", @person_number_limit)
 
       # @boats = @boats.where()
       # location = params[:criteria][:location]
@@ -39,14 +39,14 @@ class BoatsController < ApplicationController
       # boats_with_person_cap_at_loc = boats_at_loc.where("person_capacity > ?", person_number_limit)
       # @boats = boats_with_person_cap_at_loc
 
-      @search_capacity = person_number_limit
+
 
     elsif params.has_key?(:pricefilter)
       @start_date = params[:start_date]
       @end_date = params[:end_date]
       @persons_going = params[:persons_going].to_i
       @location = params[:location]
-      person_number_limit = params[:capacity].to_i
+      @person_number_limit = params[:capacity].to_i
       #Limiting the Location
       @boats = Boat.near(params[:location], 10)
 
@@ -62,11 +62,11 @@ class BoatsController < ApplicationController
       boats_available = @boats.where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date < :sd AND end_date > :ed", sd: from, ed: to).uniq.pluck(:id)
       @boats = @boats.where(id: boats_available)
       #Filtering for Person Capacity
-      @boats = @boats.where("person_capacity > ?", person_number_limit)
+      @boats = @boats.where("person_capacity >= ?", @person_number_limit)
 
       #Filtering for Price
       @boats = @boats.where("price < ?", params[:price].to_i )
-      @search_capacity = person_number_limit
+
       @price = params[:price].to_i
 
     elsif params.has_key?(:fromshow)
@@ -74,7 +74,7 @@ class BoatsController < ApplicationController
       @start_date = params[:start_date]
       @end_date = params[:end_date]
       @persons_going = params[:person].to_i
-      person_number_limit = params[:capacity].to_i
+      @person_number_limit = params[:capacity].to_i
 
       #Limiting the Location
       @boats = Boat.near(params[:location], 10)
@@ -88,15 +88,20 @@ class BoatsController < ApplicationController
       booked_boat_ids = @boats.joins(:bookings).where(("(bookings.start_date < :sd AND bookings.end_date > :sd) OR (bookings.start_date < :ed AND bookings.end_date > :ed)"), sd: from, ed: to).uniq.pluck(:id)
       boats_available = @boats.where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date < :sd AND end_date > :ed", sd: from, ed: to).uniq.pluck(:id)
       @boats = @boats.where(id: boats_available)
+
       ##3Step: Saving all boats which ID's are not included in the "booked_boats_ids"
       @boats = @boats.where.not(id: booked_boat_ids)
 
       #Filtering for Person Capacity
-      @boats = @boats.where("person_capacity > ?", person_number_limit)
-      @boats = @boats.where("price < ?", params[:price].to_i )
-      @search_capacity = person_number_limit
+      @boats = @boats.where("person_capacity >= ?", @person_number_limit)
+
+
+      unless params[:price].nil?
+        @boats = @boats.where("price < ?", params[:price].to_i )
+        @price = params[:price].to_i
+      end
       @location = params[:location]
-      @price = params[:price].to_i
+
 
 
 
