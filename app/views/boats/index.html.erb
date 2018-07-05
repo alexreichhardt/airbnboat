@@ -23,7 +23,7 @@
         <div class="col-xs-12 col-sm-6">
           <div class="card-outter">
 
-          <%= link_to "", boat_path(boat, capacity: @search_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: @location ), class: "card-link" %>
+          <%= link_to "", boat_path(boat, capacity: @search_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: @location, price: @price ), class: "card-link" %>
 
 
             <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path(boat.photo) %>);">
