@@ -62,6 +62,7 @@ class BoatsController < ApplicationController
     end
 
 
+
     # map:
     @cboats = @boats.where.not(latitude: nil, longitude: nil)
     @markers = @cboats.map do |boat|
@@ -70,6 +71,8 @@ class BoatsController < ApplicationController
         lng: boat.longitude
       }
     end
+
+
 
 
 
