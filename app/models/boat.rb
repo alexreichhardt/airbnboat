@@ -47,4 +47,15 @@ class Boat < ApplicationRecord
 
     (sum_of_ratings.to_f / all_ratings.size.to_f).round(1)
   end
+
+  def total_rating
+    reviews = bookings.map{|booking| booking.booking_reviews}.flatten
+    all_ratings = reviews.map{|review| review.rating} # [3,2,5,0]
+
+    all_ratings.size
+  end
+
+
+
+
 end
