@@ -11,6 +11,7 @@ class BookingsController < ApplicationController
   end
 
   def new
+    raise
     if user_signed_in?
       boat = Boat.find(params[:boat_id])
       start_date = params[:start_date]

@@ -17,7 +17,11 @@
     <%if user_signed_in?%>
       <div class="navbar-airnbboat-item">
         <div class="dropdown">
-          <img src='<%= current_user.avatar %>' class="avatar dropdown-toggle" id="navbar-airnbboat-menu" data-toggle="dropdown">
+          <%if current_user.avatar.file.nil?%>
+            <img src='https://img.posterlounge.de/images/wbig/poster-abstrakte-mosaik-muster-436453.jpg' class="avatar dropdown-toggle" id="navbar-airnbboat-menu" data-toggle="dropdown">
+          <%else%>
+            <img src='<%= current_user.avatar %>' class="avatar dropdown-toggle" id="navbar-airnbboat-menu" data-toggle="dropdown">
+          <%end%>
           <% if user_signed_in?%>
           <ul class="dropdown-menu dropdown-menu-right navbar-airnbboat-dropdown-menu">
             <li><%= link_to "Profile", user_path(current_user.id) %></li>
