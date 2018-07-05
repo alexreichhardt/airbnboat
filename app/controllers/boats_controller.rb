@@ -123,7 +123,6 @@ class BoatsController < ApplicationController
 
 
 
-
   def show
 
     booking_ids = []

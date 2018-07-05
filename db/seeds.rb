@@ -3,9 +3,19 @@ Booking.delete_all
 Boat.delete_all
 User.delete_all
 
-user1 = User.create(email: "jakob@lewagon.com", password: "jakob@lewagon.com", password_confirmation: "jakob@lewagon.com")
-user2 = User.create(email: "bora@lewagon.com", password: "bora@lewagon.com", password_confirmation: "bora@lewagon.com")
-user3 = User.create(email: "alex@lewagon.com", password: "alex@lewagon.com", password_confirmation: "alex@lewagon.com")
+
+users = ["bora", "jakob", "alex"]
+avatars = ["bora.jpg", "jakob.jpg", "alex.jpg"]
+
+
+3.times do |i|
+  user = User.create(email: "#{users[i]}@lewagon.com", password: "#{users[i]}@lewagon.com", password_confirmation: "#{users[i]}@lewagon.com")
+  user.avatar = File.open(Rails.root.join("db", "avatars", avatars[i]))
+  user.save
+
+end
+
+
 
 cities = ["Istanbul", "Milano", "Como", "Paris","Milano","Milano"]
 photos = ["boat1.jpg", "boat2.jpg"]
