@@ -33,11 +33,6 @@
 <div class="map-card-container">
 
 
-
-
-
-
-
   <div class="cards-container">
     <div class="row">
 
@@ -55,8 +50,9 @@
                 <h2> <%= boat.name %> </h2>
                 <p> <%= boat.person_capacity %> guests</p>
               </div>
-              <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+              <img class="card-user" <%= cl_image_tag(boat.owner[0].avatar) %>
             </div>
+
 
 
 

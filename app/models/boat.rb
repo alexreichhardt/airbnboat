@@ -55,6 +55,11 @@ class Boat < ApplicationRecord
     all_ratings.size
   end
 
+  def owner
+    owner = User.where(id: self.user_id)
+
+    owner
+  end
 
 
 
