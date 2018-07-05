@@ -20,3 +20,5 @@ class Booking < ApplicationRecord
     self.boat.user
   end
 end
+
+

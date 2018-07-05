@@ -1,0 +1,18 @@
+
+
+
+<div class="container">
+
+    <%= simple_form_for(@user, :url => "/users/edit_avatar") do |f| %>
+
+      <div class="form-group">
+        <%= f.input :avatar %>
+        <%= f.input :avatar_cache, as: :hidden %>
+      </div>
+        <%= f.button :submit, "Add new avatar picture", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+
+
+</div>
