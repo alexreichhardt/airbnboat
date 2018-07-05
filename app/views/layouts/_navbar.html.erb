@@ -1,15 +1,15 @@
 <div class="navbar-airnbboat">
   <!-- Logo -->
-  <a href="/" class="navbar-airnbboat-brand">
+
+  <a href="" class="navbar-airnbboat-brand">
     <img src='<%= asset_path('yacht.png') %>' alt="logo">
   </a>
 
   <!-- Right Navigation -->
   <div class="navbar-airnbboat-right hidden-xs hidden-sm">
-    <%if user_signed_in?%>
-      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "navbar-airnbboat-item navbar-airnbboat-link"%>
-    <%else%>
-    <%= link_to 'Log in', new_user_session_path, class: "navbar-airnbboat-item navbar-airnbboat-link"%>
+    <%if !user_signed_in?%>
+     <%= link_to 'Log in', new_user_session_path, class: "navbar-airnbboat-item navbar-airnbboat-link"%>
+
     <%end%>
     <%= link_to 'Add boat', new_boat_path, class: "navbar-airnbboat-item navbar-airnbboat-link"%>
 
@@ -17,11 +17,12 @@
     <div class="navbar-airnbboat-item">
       <div class="dropdown">
         <img src='<%= asset_path('logo.jpg') %>' class="avatar dropdown-toggle" id="navbar-airnbboat-menu" data-toggle="dropdown">
+        <% if user_signed_in?%>
         <ul class="dropdown-menu dropdown-menu-right navbar-airnbboat-dropdown-menu">
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Log Out</a></li>
+          <li><%= link_to "Profile", user_path(current_user.id) %></li>
+          <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "navbar-airnbboat-item navbar-airnbboat-link"%></li>
         </ul>
+        <%end%>
       </div>
     </div>
   </div>
