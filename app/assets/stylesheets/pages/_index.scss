@@ -3,10 +3,45 @@
 @import "user";
 @import "show";
 
-
 .main-container {
+  margin: 8px;
+}
+
+
+.btn-filter {
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 18px;
+  color: $gray;
+  margin-left:16px;
+  background-color: $light-gray;
+
+  &:hover {
+    color: $light-blue;
+    background-color: white;
+    border-color: $light-blue;
+  }
+}
+
+#price {
+  color: $gray;
+  padding: 4px 9px;
+  border-radius: 4px;
+  background-color: $light-gray;
+
+  &:hover {
+    color: $light-blue;
+    background-color: white;
+    border-color: $light-blue;
+  }
+}
+
+
+.map-card-container {
   display: flex;
   margin-bottom: 16px;
+
+
 }
 #map {
   flex: 0 0 320px;
@@ -15,14 +50,22 @@
   top: 0 !important;
 }
 
+.filter-top {
+  display:flex;
+  border-bottom: 0.5px solid $gray;
+  border-top: 0.5px solid $gray;
+  padding: 16px;
+  padding-left: 32px;
+  justify-content: flex-start;
+
+}
+
 
 .cards-container {
   flex: 1 1 auto;
   margin-right: 24px;
   margin-left: 24px;
 }
-
-
 
 .card {
   height: 322px;
