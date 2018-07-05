@@ -8,30 +8,58 @@ class BoatsController < ApplicationController
       @end_date = params[:criteria][:ends_at]
       @persons_going = params[:criteria][:person].to_i
 
-      location = params[:criteria][:location]
       person_number_limit = params[:criteria][:person].to_i - 1
 
-      boats_at_loc = Boat.all.near(params[:criteria][:location], 10000)
+      #Limiting the Location
+      @boats = Boat.near(params[:criteria][:location], 10)
 
-      boats_with_person_cap_at_loc = boats_at_loc.where("person_capacity > ?", person_number_limit)
-      @boats = boats_with_person_cap_at_loc
-      @search_capacity = person_number_limit
+      #Filtering for Booking dates
+      ##Saving the dates from params
+      from = Date.parse(params[:criteria][:starts_at])
+      to = Date.parse(params[:criteria][:ends_at])
+      ##1Step: Joining boats & bookings Table
+      ##2Step: Extracting all IDs which lie within the given start and end date
+      booked_boat_ids = @boats.joins(:bookings).where(("(bookings.start_date < :sd AND bookings.end_date > :sd) OR (bookings.start_date < :ed AND bookings.end_date > :ed)"), sd: from, ed: to).uniq.pluck(:id)
+      ##3Step: Saving all boats which ID's are not included in the "booked_boats_ids"
+      @boats = @boats.where.not(id: booked_boat_ids)
+
+      #Filtering for Person Capacity
+      @boats = @boats.where("person_capacity > ?", person_number_limit)
+
+      # @boats = @boats.where()
+      # location = params[:criteria][:location]
+      # person_number_limit = params[:criteria][:person].to_i - 1
+      # boats_at_loc = Boat.all.near(params[:criteria][:location], 1000)
+      # boats_with_person_cap_at_loc = boats_at_loc.where("person_capacity > ?", person_number_limit)
+      # @boats = boats_with_person_cap_at_loc
+      # @search_capacity = person_number_limit
+
     else
       @start_date = params[:start_date]
       @end_date = params[:end_date]
       @persons_going = params[:person].to_i
-      boat = Boat.find(params[:id])
-      location = boat.city
       person_number_limit = params[:capacity].to_i
-      boats_at_loc = Boat.all.where(city: location)
-      boats_with_person_cap_at_loc = boats_at_loc.where("person_capacity > ?", person_number_limit)
+
+      #Limiting the Location
+      @boats = Boat.near(params[:criteria][:location], 10)
+
+      #Filtering for Booking dates
+      ##Saving the dates from params
+      from = Date.parse(params[:criteria][:starts_at])
+      to = Date.parse(params[:criteria][:ends_at])
+      ##1Step: Joining boats & bookings Table
+      ##2Step: Extracting all IDs which lie within the given start and end date
+      booked_boat_ids = @boats.joins(:bookings).where(("(bookings.start_date < :sd AND bookings.end_date > :sd) OR (bookings.start_date < :ed AND bookings.end_date > :ed)"), sd: from, ed: to).uniq.pluck(:id)
+      ##3Step: Saving all boats which ID's are not included in the "booked_boats_ids"
+      @boats = @boats.where.not(id: booked_boat_ids)
+
+      #Filtering for Person Capacity
+      @boats = @boats.where("person_capacity > ?", person_number_limit)
       @search_capacity = person_number_limit
-      @boats = boats_with_person_cap_at_loc
     end
 
 
     # map:
-
     @cboats = @boats.where.not(latitude: nil, longitude: nil)
     @markers = @cboats.map do |boat|
       {
