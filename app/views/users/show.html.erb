@@ -7,7 +7,9 @@
   <div class="profile-info">
       <div class="card1">
         <h2> hey <%= @user.email%> </h2>
+        <%= cl_image_tag @user.avatar, crop: :fill %>
         <p><%= link_to "Change your password", edit_user_registration_path %></p>
+        <p><%= link_to "Change your avatar", edit_avatar_path %></p>
       </div>
   </div>
 
