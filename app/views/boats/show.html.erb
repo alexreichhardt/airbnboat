@@ -13,7 +13,7 @@
   <p>Boat Person Capacity: <%= @boat.person_capacity %></p>
   <p>Boat Price: <%= @boat.price %></p>
   <% if params.has_key?(:capacity) %>
-  <p><%= link_to "Go Back Results", boats_path(id: @boat.id, capacity: params[:capacity], start_date: @start_date, end_date: @end_date, persons_going: @persons_going), class: "btn-medium" %></p>
+  <p><%= link_to "Go Back Results", boats_path(id: @boat.id, capacity: params[:capacity], start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: params[:location]), class: "btn-medium" %></p>
   <% else %>
   <% end %>
 </div>
