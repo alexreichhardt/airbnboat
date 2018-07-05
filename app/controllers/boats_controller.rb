@@ -8,28 +8,103 @@ class BoatsController < ApplicationController
       @end_date = params[:criteria][:ends_at]
       @persons_going = params[:criteria][:person].to_i
 
-      location = params[:criteria][:location]
+      @location = params[:criteria][:location]
+
       person_number_limit = params[:criteria][:person].to_i - 1
-      boats_at_loc = Boat.all.near(params[:criteria][:location], 10000)
-      boats_with_person_cap_at_loc = boats_at_loc.where("person_capacity > ?", person_number_limit)
-      @boats = boats_with_person_cap_at_loc
+
+      #Limiting the Location
+      @boats = Boat.near(params[:criteria][:location], 10)
+
+      #Filtering for Booking dates
+      ##Saving the dates from params
+      from = Date.parse(@start_date)
+      to = Date.parse(@end_date)
+      ##1Step: Joining boats & bookings Table
+      ##2Step: Extracting all IDs which lie within the given start and end date
+      booked_boat_ids = @boats.joins(:bookings).where("(bookings.start_date < :sd AND bookings.end_date > :sd) OR (bookings.start_date < :ed AND bookings.end_date > :ed)", sd: from, ed: to).uniq.pluck(:id)
+      ##3Step: Saving all boats which ID's are not included in the "booked_boats_ids"
+      @boats = @boats.where.not(id: booked_boat_ids)
+
+      #Filtering for Boat Availabilty
+      boats_available = @boats.where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date < :sd AND end_date > :ed", sd: from, ed: to).uniq.pluck(:id)
+
+      @boats = @boats.where(id: boats_available)
+      #Filtering for Person Capacity
+      @boats = @boats.where("person_capacity > ?", person_number_limit)
+
+      # @boats = @boats.where()
+      # location = params[:criteria][:location]
+      # person_number_limit = params[:criteria][:person].to_i - 1
+      # boats_at_loc = Boat.all.near(params[:criteria][:location], 1000)
+      # boats_with_person_cap_at_loc = boats_at_loc.where("person_capacity > ?", person_number_limit)
+      # @boats = boats_with_person_cap_at_loc
+
       @search_capacity = person_number_limit
-    else
+
+    elsif params.has_key?(:pricefilter)
+      @start_date = params[:start_date]
+      @end_date = params[:end_date]
+      @persons_going = params[:persons_going].to_i
+      @location = params[:location]
+      person_number_limit = params[:capacity].to_i
+      #Limiting the Location
+      @boats = Boat.near(params[:location], 10)
+
+      #Filtering for Booking dates
+      ##Saving the dates from params
+      from = Date.parse(@start_date)
+      to = Date.parse(@end_date)
+      ##1Step: Joining boats & bookings Table
+      ##2Step: Extracting all IDs which lie within the given start and end date
+      booked_boat_ids = @boats.joins(:bookings).where(("(bookings.start_date < :sd AND bookings.end_date > :sd) OR (bookings.start_date < :ed AND bookings.end_date > :ed)"), sd: from, ed: to).uniq.pluck(:id)
+      ##3Step: Saving all boats which ID's are not included in the "booked_boats_ids"
+      @boats = @boats.where.not(id: booked_boat_ids)
+      boats_available = @boats.where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date < :sd AND end_date > :ed", sd: from, ed: to).uniq.pluck(:id)
+      @boats = @boats.where(id: boats_available)
+      #Filtering for Person Capacity
+      @boats = @boats.where("person_capacity > ?", person_number_limit)
+
+      #Filtering for Price
+      @boats = @boats.where("price < ?", params[:price].to_i )
+      @search_capacity = person_number_limit
+      @price = params[:price].to_i
+
+    elsif params.has_key?(:fromshow)
+
       @start_date = params[:start_date]
       @end_date = params[:end_date]
       @persons_going = params[:person].to_i
-      boat = Boat.find(params[:id])
-      location = boat.city
       person_number_limit = params[:capacity].to_i
-      boats_at_loc = Boat.all.where(city: location)
-      boats_with_person_cap_at_loc = boats_at_loc.where("person_capacity > ?", person_number_limit)
+
+      #Limiting the Location
+      @boats = Boat.near(params[:location], 10)
+
+      #Filtering for Booking dates
+      ##Saving the dates from params
+      from = Date.parse(@start_date)
+      to = Date.parse(@end_date)
+      ##1Step: Joining boats & bookings Table
+      ##2Step: Extracting all IDs which lie within the given start and end date
+      booked_boat_ids = @boats.joins(:bookings).where(("(bookings.start_date < :sd AND bookings.end_date > :sd) OR (bookings.start_date < :ed AND bookings.end_date > :ed)"), sd: from, ed: to).uniq.pluck(:id)
+      boats_available = @boats.where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date < :sd AND end_date > :ed", sd: from, ed: to).uniq.pluck(:id)
+      @boats = @boats.where(id: boats_available)
+      ##3Step: Saving all boats which ID's are not included in the "booked_boats_ids"
+      @boats = @boats.where.not(id: booked_boat_ids)
+
+      #Filtering for Person Capacity
+      @boats = @boats.where("person_capacity > ?", person_number_limit)
+      @boats = @boats.where("price < ?", params[:price].to_i )
       @search_capacity = person_number_limit
-      @boats = boats_with_person_cap_at_loc
+      @location = params[:location]
+      @price = params[:price].to_i
+
+
+
     end
 
 
-    # map:
 
+    # map:
     @cboats = @boats.where.not(latitude: nil, longitude: nil)
     @markers = @cboats.map do |boat|
       {
@@ -38,11 +113,14 @@ class BoatsController < ApplicationController
       }
     end
 
-
-
   end
 
+
+
+
+
   def show
+
     booking_ids = []
     all_booking_this_boat = Booking.where(boat_id: @boat.id)
     all_booking_this_boat.each do |booking|
@@ -64,6 +142,7 @@ class BoatsController < ApplicationController
   end
 
   def new
+    @persons_going = params[:perons_going]
     if user_signed_in?
       @boat = Boat.new
     else
@@ -108,6 +187,6 @@ class BoatsController < ApplicationController
   end
 
   def boat_params
-    params.require(:boat).permit(:title, :description, :city, :person_capacity, :price, :photo)
+    params.require(:boat).permit(:title, :description, :city, :person_capacity, :price, :photo, :start_date, :end_date)
   end
 end

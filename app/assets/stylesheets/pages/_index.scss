@@ -6,6 +6,7 @@
 
 .main-container {
   display: flex;
+  margin-bottom: 16px;
 }
 #map {
   flex: 0 0 320px;
@@ -23,7 +24,6 @@
 
 
 
-
 .card {
   height: 322px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
@@ -34,6 +34,9 @@
   margin: 0 auto;
   margin-top: 15px;
   min-width: 160px;
+
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 .card-user {
   position: absolute;
@@ -41,27 +44,69 @@
   top: 10px;
   width: 40px;
   border-radius: 50%;
+
 }
 .card-category {
   position: absolute;
   top: 10px;
-  left: 10px;
-  font-size: 15px;
-  text-transform: uppercase;
+  display:flex;
+
+
+  background-color: $gray;
+
+  padding-left: 15px;
+  padding-right: 15px;
+  h3 {
+    font-size: 24px;
+    margin: 5px;
+  }
+  p {
+    font-size: 16px;
+    margin-bottom: 0px;
+    padding-top: 7px;
+  }
+
+}
+
+.ratings {
+  display: flex;
+  p {
+    margin-left: 5px;
+  }
+}
+.card-outter {
+  box-shadow: 1px 1px 1px grey;
+  border-radius: 3px;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.card-footer {
+  padding-left: 10px;
+  padding-bottom: 10px;
+
+  h2 {
+    font-size: 18px;
+    margin-top: 16px;
+  }
 }
 .card-description {
   position: absolute;
   bottom: 10px;
   left: 10px;
-}
-.card-description h2 {
+  h2 {
   font-size: 24px;
-}
-.card-description p {
+  }
+
+  p {
   font-size: 14px;
   opacity: 0.7;
   font-weight: lighter;
+  }
+
 }
+
 .card-link {
   position: absolute;
   top: 0;
@@ -72,6 +117,7 @@
   background: black;
   opacity: 0;
 }
-.card-link:hover {
-  opacity: 0.1;
-}
+
+// .card-link:hover {
+//   opacity: 0.1;
+// }
