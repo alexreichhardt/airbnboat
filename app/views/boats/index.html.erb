@@ -8,40 +8,51 @@
 
         <% @boats.each_with_index do |boat, i| %>
         <div class="col-xs-12 col-sm-6">
+          <div class="card-outter">
+
+          <%= link_to "", boat_path(boat, capacity: @search_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: @location ), class: "card-link" %>
+
 
             <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path(boat.photo) %>);">
-
-              <div class="card-category"><%= boat.price %></div>
+              <div class="card-category">
+                <h3>€<%= boat.price %></h3><p>per day</p> </div>
               <div class="card-description">
                 <h2> <%= boat.name %> </h2>
-                <p> <%= boat.person_capacity %></p>
+                <p> <%= boat.person_capacity %> guests</p>
               </div>
               <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
-
-                <%= link_to "", boat_path(boat, capacity: @search_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: @location ), class: "card-link" %>
-
             </div>
 
 
 
           <!-- card footer -->
-            <div>
-              <%= boat.title %>
+            <div class="card-footer">
+
+              <h2>  <%= boat.title %> </h2>
 
               <% if boat.avg_rating.class == Float %>
                 <% t = boat.avg_rating.to_i %>
+                <div class="ratings">
+                  <div class="stars">
                 <% t.times do %>
                   <i class="fas fa-star"></i>
                 <% end %>
                 <% (5-t).times do %>
+
                   <i class="far fa-star"></i>
+                  </div>
+                  <p> (<%= boat.total_rating %>)</p>
+                </div>
                 <% end %>
               <% else %>
-                <%= boat.avg_rating %>
+                <p>No ratings yet</p>
+
               <% end %>
 
-              <p> <%= boat.avg_rating || "No ratings yet" %></p>
 
+
+
+            </div>
             </div>
 
         </div>
