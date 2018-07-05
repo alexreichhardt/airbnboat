@@ -62,8 +62,9 @@ class BoatsController < ApplicationController
       #Filtering for Price
       @boats = @boats.where("price < ?", params[:price].to_i )
       @search_capacity = person_number_limit
+      @price = params[:price].to_i
 
-    else
+    elsif params.has_key?(:fromshow)
 
       @start_date = params[:start_date]
       @end_date = params[:end_date]
@@ -85,8 +86,13 @@ class BoatsController < ApplicationController
 
       #Filtering for Person Capacity
       @boats = @boats.where("person_capacity > ?", person_number_limit)
+      @boats = @boats.where("price < ?", params[:price].to_i )
       @search_capacity = person_number_limit
       @location = params[:location]
+      @price = params[:price].to_i
+
+
+
     end
 
 
@@ -107,6 +113,7 @@ class BoatsController < ApplicationController
   end
 
   def show
+
     booking_ids = []
     all_booking_this_boat = Booking.where(boat_id: @boat.id)
     all_booking_this_boat.each do |booking|
