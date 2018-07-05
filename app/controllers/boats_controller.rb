@@ -10,7 +10,9 @@ class BoatsController < ApplicationController
 
       location = params[:criteria][:location]
       person_number_limit = params[:criteria][:person].to_i - 1
+
       boats_at_loc = Boat.all.near(params[:criteria][:location], 10000)
+
       boats_with_person_cap_at_loc = boats_at_loc.where("person_capacity > ?", person_number_limit)
       @boats = boats_with_person_cap_at_loc
       @search_capacity = person_number_limit
