@@ -57,7 +57,7 @@
       <% else %>
       <% end %>
 
-    <% if (current_user.id != @boat.user_id) %>
+    <% if (current_user.nil? || current_user.id != @boat.user_id) %>
       <div class="request-and-go-back-btn">
         <%= link_to "Request to Book", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ), class: "btn-medium action-option" %>
       </div>
