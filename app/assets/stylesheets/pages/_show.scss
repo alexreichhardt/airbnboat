@@ -1,0 +1,81 @@
+.btns-container {
+  flex: 1 1 auto;
+  margin-right: 24px;
+  margin-left: 24px;
+  display: flex;
+}
+
+.go-back {
+  background-color: #469AE0;
+  flex: 0 0 450px;
+
+}
+
+.request-booking {
+  background-color: #469AE0;
+    flex: 0 0 450px;
+
+}
+
+.edit-boat {
+  background-color: #469AE0;
+    flex: 0 0 450px;
+
+}
+
+.delete-boat  {
+  background-color: #469AE0;
+    flex: 0 0 450px;
+}
+
+.edit-and-delete {
+  display: flex;
+  padding-right: 10px;
+}
+
+.title-box {
+  padding-left: 25px;
+}
+
+.edit-delete-btn {
+  margin-left: 0;
+  margin-top: auto;
+  margin-bottom: 20px;
+  max-width: 150px;
+  min-width: 125px;
+  flex: 0;
+}
+.boat-info-and-review {
+  display: flex;
+  justify-content: space-between;
+
+}
+.boat-info-description-and-review {
+  display: flex;
+  justify-content: space-between;
+}
+
+.description-and-review {
+  padding-left: 25px;
+
+
+}
+
+.boat-info-container {
+  padding-right: 25px;
+
+
+}
+.request-and-back-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.request-and-go-back-btn {
+  flex: 0;
+  min-width: 190px;
+}
+
+

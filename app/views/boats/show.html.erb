@@ -1,47 +1,74 @@
 
-<div class="banner_show" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= cl_image_path @boat.photo, crop: :fill %>);">
-  <div class="banner_show-content">
-    <h1><%= @boat.title %></h1>
+
+<div class="banner_show" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= cl_image_path @boat.photo, crop: :fill %>'); background-position: center center;">
+    <div class="title-box">
+    <h2><%= @boat.title %></h2>
+    </div>
+
+        <% if (user_signed_in? && (current_user.id == @boat.user_id)) %>
+        <div class="edit-and-delete">
+          <div class="edit-delete-btn">
+            <%= link_to "Edit Boat", edit_boat_path(@boat.id), class: "btn-medium action-option" %>
+          </div>
+
+          <div class="edit-delete-btn">
+            <%= link_to "Delete", boat_path(@boat, method: :delete, data: { confirm: "Are you sure?" } ), class: "btn-medium action-option" %>
+          </div>
+          </div>
+        <% end %>
+</div>
+
+
+
+
+<div class="boat-info-description-and-review">
+  <div class="description-and-review">
+    <div class="boat-description-container">
+      <h3>Boat Description</h3>
+        <p>Boat Description: <%= @boat.description %></p>
+    </div>
+
+
+    <div class="boat-review-container">
+      <h3>Reviews</h3>
+      <ul>
+        <%@reviews.each do |review| %>
+          <li><%= review.title %> </li>
+          <li><%= review.content %> </li>
+          <li><%= review.rating %> </li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+  <div class="boat-info-container">
+    <h3>Boat Info</h3>
+      <p>Boat City: <%= @boat.city %></p>
+      <p>Boat Person Capacity: <%= @boat.person_capacity %></p>
+      <p>Boat Price: <%= @boat.price %></p>
   </div>
 </div>
-<div>
-  <br>
 
 
-  <p>Boat Description: <%= @boat.description %></p>
-  <p>Boat City: <%= @boat.city %></p>
-  <p>Boat Person Capacity: <%= @boat.person_capacity %></p>
-  <p>Boat Price: <%= @boat.price %></p>
-  <% if params.has_key?(:capacity) %>
-  <p><%= link_to "Go Back Results", boats_path(fromshow: "true", id: @boat.id, capacity: params[:capacity], start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: params[:location], price: params[:price]), class: "btn-medium" %></p>
-  <% else %>
-  <% end %>
-</div>
-<div>
-<ul>
-  <%@reviews.each do |review| %>
-    <li><%= review.title %> </li>
-    <li><%= review.content %> </li>
-    <li><%= review.rating %> </li>
-  <%end%>
-</ul>
-</div>
-<br>
-<div class="btns">
-<%= link_to "Request Booking", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ), class: "btn-medium" %>
-</div>
+    <div class="request-and-back-container">
+      <% if params.has_key?(:capacity) %>
+      <div class="request-and-go-back-btn">
+        <p><%= link_to "Back to Results", boats_path(fromshow: "true", id: @boat.id, capacity: params[:capacity], start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: params[:location], price: params[:price]), class: "btn-medium go-back action-option" %></p>
+        </div>
+      <% else %>
+      <% end %>
 
-<div>
-<br>
-</div>
+    <% if (current_user.id != @boat.user_id) %>
+      <div class="request-and-go-back-btn">
+        <%= link_to "Request to Book", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ), class: "btn-medium action-option" %>
+      </div>
+    </div>
+    <% end %>
 
-<div class="show-operations-container ">
-<% if (user_signed_in? && (current_user.id == @boat.user_id)) %>
-  <%= link_to "Edit Boat", edit_boat_path(@boat.id), class: "btn-medium" %>
-  <%= link_to "Delete", boat_path(@boat, method: :delete, data: { confirm: "Are you sure?" } ), class: "btn-medium" %>
-<% end  %>
-</div>
-<br>
+
+
+
+
+
 <div
   id="map"
   style="width: 100%;
