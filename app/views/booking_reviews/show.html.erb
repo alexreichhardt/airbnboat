@@ -1,12 +1,16 @@
 
-<div class="container">
-
-<h1>Thanks for reviewing your trip/cruise</h1>
-
-<h2><%= @review.title %></h2>
-
-<p><%= @review.content %></p>
-
-<%= link_to "Back to all Bookings", user_path(current_user.id)  %>
-
+<div class="container-form" style="min-height: calc(100vh - 70px - 131px);">
+  <div class="banner-confirm">
+    <h1>Thanks for reviewing your trip</h1>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-4 col-sm-4">
+      <div class="form-box" style="margin-top: 45px;">
+        <h2><%= @review.title %></h2>
+        <p><%= @review.content %></p>
+        <%= link_to "Back to all Bookings", user_path(current_user.id), class: "search-c5a"  %>
+      </div>
+    </div>
+  </div>
 </div>
+
