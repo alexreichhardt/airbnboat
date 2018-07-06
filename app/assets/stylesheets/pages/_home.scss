@@ -33,6 +33,11 @@
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   height: 50px;
   color: $dark-gray;
+
+}
+
+.simple_form .string .search-field {
+  border-radius: none;
 }
 
 .simple_form .string .search-field-left {
