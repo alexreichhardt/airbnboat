@@ -39,8 +39,10 @@
 
        <div class="message-body">
          <%= link_to("Show Boat", boat_path(boat), :class => "show-review") %>
+         <div style="margin-top: 8px;">
          <i><%= link_to("", edit_boat_path(boat) , :class => "fas fa-edit icons") %></i>
          <i><%= link_to("", boat_path(boat), method: :delete, data: { confirm: "Are you sure?" }, :class => "fas fa-trash-alt icons") %></i>
+         </div>
        </div>
      </div>
    </div>
