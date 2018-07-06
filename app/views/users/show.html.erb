@@ -10,8 +10,8 @@
         <%= cl_image_tag @user.avatar, crop: :fill, class: "avatar-lg" %>
         <h3> hey <%= @user.email%> </h3>
 
-        <p><%= link_to "Change your password", edit_user_registration_path, class: "inv-show-review" %>
-        <%= link_to "Change your avatar", edit_avatar_path, class: "inv-show-review" %></p>
+        <p><%= link_to "Change your password", edit_user_registration_path, class: "inv-show-review" %></p>
+        <p><%= link_to "Change your avatar", edit_avatar_path, class: "inv-show-review" %></p>
       </div>
   </div>
 
@@ -27,12 +27,13 @@
             <div class="message-name">
                <h3> <%=  boat.title %> </h3>
                <p><%= boat.name %></p>
+               <p> <%= boat.city %> </p>
 
             </div>
 
-            <div class="message-body">
-             <p><strong><%= boat.description %></strong></p>
-             <p> <%= boat.city %> </p>
+            <div class="message-body-description">
+             <p><%= boat.description %></p>
+
             </div>
 
 
@@ -66,7 +67,7 @@
             </div>
 
             <div class="message-body">
-             <p><strong>total price</strong></p>
+             <p><strong>Total price</strong></p>
              <p> € <%= booking.price %> </p>
             </div>
 
