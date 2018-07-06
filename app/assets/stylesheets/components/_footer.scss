@@ -8,16 +8,12 @@
     // position: fixed;
     // height: 100px;
     bottom: 0;
-    width: 80%;        /* Set the width */
+      /* Set the width */
     margin: 0 auto;
-    padding: 0px 50px;
+    padding: 0px 100px;
     padding-bottom: 0px;
     // background-color: rgba(164, 176, 193, 0.3);
     color: rgba(0,0,0,0.3);
-    display: flex;
-    justify-content: space-around;
-
-
 
 
     h3 {
@@ -60,4 +56,18 @@
     }
 
 
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-column {
+  padding-left: 120px;
+  padding-right: 0px;
+}
+
+#left {
+   padding-left: 80px;
 }
