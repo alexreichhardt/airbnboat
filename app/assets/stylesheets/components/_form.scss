@@ -19,6 +19,14 @@
   font-size: 15px;
 }
 
+.form-font .action-link {
+  color:#424141;
+  &:hover {
+    text-decoration: none;
+    color:#FD6E65;
+  }
+}
+
 .form-actions .btn {
   background-color: red;
   background: #03B4FF;
@@ -39,6 +47,9 @@
   justify-content: space-between;
 }
 
+.form-group-new .form-group .form-control {
+ color: #575757;
+}
 .form-group-new #criteria_location {
     display: block;
     height: 39px;
@@ -76,3 +87,5 @@
 .form-group-new .form-group .form-control-file {
   display: flex;
 }
+
+
