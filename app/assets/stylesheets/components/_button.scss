@@ -49,12 +49,11 @@ transition: 0.3s;
 .search-c2a {
   // background: $red;
   background: #FF6D61;
-  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   border-radius: 0px 4px 4px 0px;
   width: 100px;
   height: 50px;
   transition: 0.3s;
-
 
   &:hover {
     color: white;
