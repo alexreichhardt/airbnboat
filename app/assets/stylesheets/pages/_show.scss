@@ -57,15 +57,21 @@
 
 .description-and-review {
   padding-left: 25px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 
+
+}
+
+.boat-review-container {
 
 }
 
 .boat-info-container {
   padding-right: 25px;
-
-
 }
+
 .request-and-back-container {
   display: flex;
   justify-content: center;
