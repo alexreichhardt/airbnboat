@@ -9,44 +9,46 @@
 
 
 
-        <%= simple_form_for :criteria, url: boats_path,
-        wrapper: :inline_form,
-        html: { class: "form-inline" },
-        wrapper_mappings: {
-        boolean: :inline_boolean
-        },:method => :get do |f| %>
+    <%= simple_form_for :criteria, url: boats_path,
+    wrapper: :inline_form,
+    html: { class: "form-inline" },
+    wrapper_mappings: {
+      boolean: :inline_boolean
+    },:method => :get do |f| %>
 
-        <%= f.input :location, :id => "location", as: :string ,input_html: { class: "mr-sm-2" } %>
-        <%= f.input :person, as: :integer , input_html: { class: "mr-sm-2" } , :placeholder => "People number" %>
-        <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 "}, :placeholder => "Starts at" %>
-        <%= f.input :ends_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2"}, :placeholder => "Ends at" %>
-        <%= f.button :submit, "Go", class: "btn btn-primary mx-sm-2"  %>
-        <% end %>
-    </div>
+    <%= f.input :location, :id => "location", as: :string ,input_html: { class: "mr-sm-2" } %>
+    <%= f.input :person, as: :integer , input_html: { class: "mr-sm-2" } , :placeholder => "People number" %>
+    <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 "}, :placeholder => "Starts at" %>
+    <%= f.input :ends_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2"}, :placeholder => "Ends at" %>
+    <%= f.button :submit, "Go", class: "btn btn-primary mx-sm-2"  %>
+    <% end %>
+  </div>
 
-    </div>
-
-
-    <div class="container_1">
-      <div class="row">
-    <div class="col-xs-12 col-md-4">
-    <div class="items item_1">
-      <h2>Search</h2>
-      <p>Explore our privately owned, worldwide fleet</p>
-      <i class="fas fa-search fa-2x"></i>
-    </div>
-      </div>
-      <div class="col-xs-12 col-md-4">
-    <div class="items item_2"><h2>Book</h2>
-      <p>Set your dates for your boating adventure</p>
-      <i class="far fa-calendar-check fa-2x"></i></div>
-    </div>
-    <div class="col-xs-12 col-md-4">
-    <div class="items item_3">
-      <h2>Cruise</h2>
-      <p>Your AirbnBoatz experience begins</p>
-      <i class="fas fa-ship fa-2x"></i></div>
-      </div>
 </div>
+
+
+<div class="container_1">
+  <div class="row">
+    <div class="col-xs-12 col-md-4">
+      <div class="items item_1">
+        <h2>Search</h2>
+        <p>Explore our privately owned, worldwide fleet</p>
+        <i class="fas fa-search fa-2x"></i>
+      </div>
     </div>
+    <div class="col-xs-12 col-md-4">
+      <div class="items item_2"><h2>Book</h2>
+        <p>Set your dates for your boating adventure</p>
+        <i class="far fa-calendar-check fa-2x"></i>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <div class="items item_3">
+        <h2>Cruise</h2>
+        <p>Your AirbnBoatz experience begins</p>
+        <i class="fas fa-ship fa-2x"></i>
+      </div>
+    </div>
+  </div>
+</div>
 
