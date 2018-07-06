@@ -1,42 +1,32 @@
 
 <div class="banner" style="background-image:  linear-gradient(180deg, rgba(219, 246, 200, 0.04) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, rgba(28, 175, 198, 0.25) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, #012690 0%, rgba(255, 255, 255, 0) 100%), url('<%= asset_path('boat.jpg') %>');">
+
   <div class="banner-content">
-    <div class="container">
-      <div class="form-wrapper" style="width: 400px; margin: 0 auto;">
-        <h2 class="margin-b">Start your search! </h2>
+
+    <div class="banner-header">
+      <!-- <div class="container"> -->
+          <h1>Book the perfect boat</h1>
+          <p>Your dream boat is waiting for you</p>
+    </div>
+      <!-- </div> -->
+
+      <div class="form-wrapper">
+
+          <%= simple_form_for :criteria, url: boats_path,
+          wrapper: :inline_form,
+          html: { class: "form-inline"},
+          wrapper_mappings: {
+            boolean: :inline_boolean
+          },:method => :get do |f| %>
+
+          <%= f.input :location, :id => "location", as: :string ,input_html: { class: "mr-sm-2 search-field search-field-left" } %>
+          <%= f.input :person, as: :integer , input_html: { class: "mr-sm-2 search-field" } , :placeholder => "People number" %>
+          <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 search-field"}, :placeholder => "Starts at" %>
+          <%= f.input :ends_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 search-field"}, :placeholder => "Ends at" %>
+          <%= f.button :submit, "Go", class: "search-c2a search-field-right"  %>
+          <% end %>
       </div>
     </div>
 
-
-
-        <%= simple_form_for :criteria, url: boats_path,
-        wrapper: :inline_form,
-        html: { class: "form-inline" },
-        wrapper_mappings: {
-          boolean: :inline_boolean
-        },:method => :get do |f| %>
-
-        <%= f.input :location, :id => "location", as: :string ,input_html: { class: "mr-sm-2" } %>
-        <%= f.input :person, as: :integer , input_html: { class: "mr-sm-2" } , :placeholder => "People number" %>
-        <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 "}, :placeholder => "Starts at" %>
-        <%= f.input :ends_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2"}, :placeholder => "Ends at" %>
-        <%= f.button :submit, "Go", class: "btn btn-primary mx-sm-2"  %>
-        <% end %>
-    </div>
-    <div class="box">
-  <div></div>
-</div>
-      <div class="box">
-  <div></div>
-</div>
-      <div class="box">
-  <div></div>
-</div>
-      <div class="box">
-  <div></div>
-</div>
-      <div class="box">
-  <div></div>
-</div>
 
 </div>
