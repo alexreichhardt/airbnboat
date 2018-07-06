@@ -95,3 +95,22 @@ transition: 0.3s;
     background: #ff978d;
   }
 }
+
+.show-review {
+  background: $gray;
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 4px 4px 4px 4px;
+  padding: 5px 10px;
+  height: 45px;
+  transition: 0.1s;
+  color: white;
+  text-decoration: none;
+
+
+  &:hover {
+     color: white;
+    background: $gray;
+    border: 1px solid $dark-gray;
+  }
+
+}
