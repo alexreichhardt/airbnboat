@@ -8,11 +8,12 @@
         <% if (user_signed_in? && (current_user.id == @boat.user_id)) %>
         <div class="edit-and-delete">
           <div class="edit-delete-btn">
-            <%= link_to "Edit Boat", edit_boat_path(@boat.id), class: "btn-medium action-option" %>
+            <%= link_to "", edit_boat_path(@boat.id), class: "editicon fas fa-edit" %>
+
           </div>
 
           <div class="edit-delete-btn">
-            <%= link_to "Delete", boat_path(@boat, method: :delete, data: { confirm: "Are you sure?" } ), class: "btn-medium action-option" %>
+            <%= link_to "", boat_path(@boat), method: :delete, data: { confirm: "Are you sure?" }, class: "fas fa-trash-alt " %>
           </div>
           </div>
         <% end %>
@@ -23,15 +24,14 @@
 
 <div class="boat-info-description-and-review">
   <div class="description-and-review">
-    <div class="boat-description-container">
-      <h3>Boat Description</h3>
+    <h3>Boat Description</h3>
+    <div class="boat-description-container panel panel-default">
         <p><%= @boat.description %></p>
     </div>
 
     <h3>Reviews</h3>
 
     <div class="boat-review-container panel panel-default">
-
         <%@reviews.each do |review| %>
         <div class="single-review">
           <div class="review-profile">
@@ -69,14 +69,16 @@
       <p>Daily Price: <%= @boat.price %></p>
       <% start_date = params[:start_date] %>
       <% end_date = params[:end_date] %>
-      <% total_price = (@boat.price.to_i * (end_date.to_date - start_date.to_date)).to_i %>
+      <% if !end_date.nil? %>
+        <%  total_price = (@boat.price.to_i * (end_date.to_date - start_date.to_date)).to_i %>
+        <% end %>
       <p>Start Date: <%= start_date %></p>
       <p>End Date: <%= end_date %></p>
       <p>Total Price: <%= total_price %></p>
       </div>
-      <div class="request-and-go-back-btn request-div">
+      <div class="request-div">
       <% if (current_user.nil? || current_user.id != @boat.user_id) %>
-          <%= link_to "Request to Book", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ), class: "btn-medium action-option" %>
+          <%= link_to "Request to Book", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ), class: "action-option requestbtn" %>
       <% end %>
       </div>
   </div>
@@ -88,18 +90,13 @@
       <div class="request-and-go-back-btn">
 
       <% if params.has_key?(:capacity) %>
-        <p><%= link_to "Back to Results", boats_path(fromshow: "true", id: @boat.id, capacity: params[:capacity], start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: params[:location], price: params[:price]), class: "btn-medium go-back action-option" %></p>
+        <p><%= link_to "Back to Results", boats_path(fromshow: "true", id: @boat.id, capacity: params[:capacity], start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: params[:location], price: params[:price]), class: "backbtn" %></p>
       <% else %>
       <% end %>
       </div>
 
-    <div class="request-and-go-back-btn">
-      <% if (current_user.nil? || current_user.id != @boat.user_id) %>
-          <%= link_to "Request to Book", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ), class: "btn-medium action-option" %>
-      <% end %>
-    </div>
-    </div>
 
+    </div>
 
 
 <div
