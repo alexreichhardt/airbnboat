@@ -31,7 +31,8 @@
 
     i {
       margin-right: 3px;
-      opacity: 0.7;
+      opacity: 0.9;
+      color: $gray;
 
       &:hover {
         opacity: 1;
@@ -39,7 +40,8 @@
     }
 
     li {
-      opacity: 0.7;
+      opacity: 0.9;
+
 
       &:hover {
         opacity: 1;
@@ -47,6 +49,7 @@
 
       a {
         text-decoration:none;
+        color: $gray;
       }
 
     }
