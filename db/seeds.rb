@@ -38,5 +38,4 @@ end
 15.times do
   review = BookingReview.create(title: "nice cruise", content: "dummy text ever since the 1500 dummy text ever since the 1500 dummy text ever since the 1500", rating: rand(1..5), user_id:  user_ids.sample, booking_id:  Booking.all.pluck(:id).sample)
   review.save
-
 end

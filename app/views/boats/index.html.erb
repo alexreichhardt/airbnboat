@@ -21,7 +21,7 @@
     <div class="cards-container">
       <div class="row">
         <% @boats.each_with_index do |boat, i| %>
-          <div class="col-xs-12 col-sm-6">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
             <div class="card-outter">
               <%= link_to "", boat_path(boat, capacity: @person_number_limit, start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: @location, price: @price ), class: "card-link" %>
 
