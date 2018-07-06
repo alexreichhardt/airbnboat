@@ -17,8 +17,8 @@
 
 
   <div class="boats-bookings">
-    <% if @boats.any? %>
     <h2>Your Boats</h2>
+    <% if @boats.any? %>
     <% @boats.each do |boat| %>
 
     <div class="card1">
@@ -27,7 +27,7 @@
         <div class="message-name">
          <h3> <%=  boat.title %> </h3>
          <p><%= boat.name %></p>
-         <p> <%= boat.city %> </p>
+         <p style="width: 100px;"> <%= boat.city %> </p>
 
        </div>
 
