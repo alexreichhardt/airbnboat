@@ -25,47 +25,80 @@
   <div class="description-and-review">
     <div class="boat-description-container">
       <h3>Boat Description</h3>
-        <p>Boat Description: <%= @boat.description %></p>
+        <p><%= @boat.description %></p>
     </div>
 
+    <h3>Reviews</h3>
 
-    <div class="boat-review-container">
-      <h3>Reviews</h3>
-      <ul>
+    <div class="boat-review-container panel panel-default">
+
         <%@reviews.each do |review| %>
-          <li><%= review.title %> </li>
-          <li><%= review.content %> </li>
-          <li><%= review.rating %> </li>
+        <div class="single-review">
+          <div class="review-profile">
+            <% author_id = review.user_id %>
+            <% author = User.find(author_id) %>
+            <% author_avatar = author.avatar %>
+            <img src='<%= author_avatar %>' class="review-avatar">
+            <p class="by-name"><%= author.email %></p>
+          </div>
+          <div class="review-content">
+            <h4><%= review.title %> </h4>
+
+            <p><%= review.content %> </p>
+            <% t = review.rating.to_i %>
+              <div class="stars">
+                <% t.times do %>
+                  <i class="fas fa-star"></i>
+                <% end %>
+                <% (5-t).times do %>
+                  <i class="far fa-star"></i>
+                <% end %>
+              </div>
+          </div>
+        </div>
         <%end%>
-      </ul>
     </div>
   </div>
-  <div class="boat-info-container">
-    <h3>Boat Info</h3>
-      <p>Boat City: <%= @boat.city %></p>
-      <p>Boat Person Capacity: <%= @boat.person_capacity %></p>
-      <p>Boat Price: <%= @boat.price %></p>
+  <div class="boat-info-container panel panel-default ">
+    <div class="panel-heading">
+      <h3 class="panel-title">Boat & Booking Info</h3>
+    </div>
+    <div class="boat-info-text panel-body">
+      <p>City: <%= @boat.city %></p>
+      <p>Person Capacity: <%= @boat.person_capacity %></p>
+      <p>Daily Price: <%= @boat.price %></p>
+      <% start_date = params[:start_date] %>
+      <% end_date = params[:end_date] %>
+      <% total_price = (@boat.price.to_i * (end_date.to_date - start_date.to_date)).to_i %>
+      <p>Start Date: <%= start_date %></p>
+      <p>End Date: <%= end_date %></p>
+      <p>Total Price: <%= total_price %></p>
+      </div>
+      <div class="request-and-go-back-btn request-div">
+      <% if (current_user.nil? || current_user.id != @boat.user_id) %>
+          <%= link_to "Request to Book", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ), class: "btn-medium action-option" %>
+      <% end %>
+      </div>
   </div>
 </div>
 
 
     <div class="request-and-back-container">
-      <% if params.has_key?(:capacity) %>
+
       <div class="request-and-go-back-btn">
+
+      <% if params.has_key?(:capacity) %>
         <p><%= link_to "Back to Results", boats_path(fromshow: "true", id: @boat.id, capacity: params[:capacity], start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: params[:location], price: params[:price]), class: "btn-medium go-back action-option" %></p>
-        </div>
       <% else %>
       <% end %>
-
-    <% if (current_user.nil? || current_user.id != @boat.user_id) %>
-      <div class="request-and-go-back-btn">
-        <%= link_to "Request to Book", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ), class: "btn-medium action-option" %>
       </div>
+
+    <div class="request-and-go-back-btn">
+      <% if (current_user.nil? || current_user.id != @boat.user_id) %>
+          <%= link_to "Request to Book", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ), class: "btn-medium action-option" %>
+      <% end %>
     </div>
-    <% end %>
-
-
-
+    </div>
 
 
 
