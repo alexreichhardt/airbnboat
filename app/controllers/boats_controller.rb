@@ -2,7 +2,7 @@ class BoatsController < ApplicationController
   before_action :find_boat, only: [:show, :edit, :update, :destroy]
 
   def index
-
+raise
 
     if params.has_key?(:criteria)
       @start_date = params[:criteria][:starts_at]
