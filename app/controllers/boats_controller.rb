@@ -3,8 +3,10 @@ class BoatsController < ApplicationController
 
   def index
 
-    if params[:criteria][:starts_at] > params[:criteria][:ends_at]
-      redirect_to root_path
+    if (params[:criteria] != nil && params[:criteria][:starts_at] > params[:criteria][:ends_at])
+      redirect_to root_path(error: "Start date can't be later than end date")
+    elsif (params[:criteria] != nil && params[:criteria][:starts_at].to_date <  Date.today)
+      redirect_to root_path(error: "Start date must be greater than today")
     end
 
     if params.has_key?(:criteria)
