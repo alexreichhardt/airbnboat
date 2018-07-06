@@ -10,11 +10,22 @@
 .boats-bookings {
   grid-row: 1;
   grid-column: 1 / span 1;
+
+  h2 {
+    margin-left: 20px;
+  }
 }
 
 .profile-info {
   grid-row: 1;
   grid-column: 2 / span 2;
+  margin-top: 54px;
+
+  p {
+
+    margin-top: 24px;
+
+  }
 
 }
 
@@ -42,6 +53,10 @@
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid rgba(220,224,244,0.4);
+
+
+
+
 }
 .message:last-child {
   border-bottom: none;
@@ -55,20 +70,21 @@
 .message-name {
   padding-left: 10px;
   min-width: 100px;
+
 }
 .message-name h3 {
-  font-size: 13px;
+  font-size: 26px;
   margin-bottom: 0px;
 }
 .message-name p {
-  font-size: 13px;
+  font-size: 26px;
   font-weight: lighter;
   opacity: 0.6;
   margin-top: 5px;
 }
 .message-body {
   padding-left: 10px;
-  font-size: 13px;
+  font-size: 16px;
   color: rgba(0,0,0,0.7);
 }
 .message-body {
@@ -83,7 +99,7 @@
   margin: 6px 0;
 }
 .message-status {
-  font-size: 14px;
+  font-size: 28px;
   font-weight: bold;
 }
 .status.accepted {
@@ -94,4 +110,17 @@
 }
 .status.pending {
   color: lightgrey;
+}
+
+.message-body a {
+  margin-right: 16px;
+}
+
+.icons {
+  color: $gray;
+  opacity: 0.6;
+  &:hover {
+    color: $gray;
+    opacity: 1;
+  }
 }
