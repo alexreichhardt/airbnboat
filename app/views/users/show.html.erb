@@ -6,8 +6,8 @@
 
   <div class="profile-info">
       <div class="card1">
-        <h2> hey <%= @user.email%> </h2>
-        <%= cl_image_tag @user.avatar, crop: :fill %>
+        <%= cl_image_tag @user.avatar, crop: :fill, class: "avatar-lg" %>
+        <h3> hey <%= @user.email%> </h3>
         <p><%= link_to "Change your password", edit_user_registration_path %></p>
         <p><%= link_to "Change your avatar", edit_avatar_path %></p>
       </div>
@@ -15,20 +15,21 @@
 
 
   <div class="boats-bookings">
-
     <% if @boats.any? %>
       <% @boats.each do |boat| %>
         <div class="card1">
-          <h1><%= boat.title %></h1>
+          <h1><%= boat.title %> <i><%= link_to("", edit_boat_path(boat) , :class => "fas fa-edit") %></i>
+          <i><%= link_to("", boat_path(boat), method: :delete, data: { confirm: "Are you sure?" }, :class => "fas fa-trash-alt") %></h1></i>
+
+
           <h3><%= boat.description %></h3>
           <p>City: <%= boat.city %></p>
           <p>Person Capacity: <%= boat.person_capacity %></p>
           <%= link_to("Show Boat", boat_path(boat), :class => "btn btn-primary") %>
-          <%= link_to("Edit Boat", edit_boat_path(boat) , :class => "btn btn-warning") %>
-          <%= link_to("Delete", boat_path(boat), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-danger") %>
         </div>
       <% end %>
     <% else %>
+
       <div class="card1">
         no boats
       </div>
@@ -52,15 +53,15 @@
         </div>
       <% end %>
 
-
-
     <% else %>
       <div class="card1">
         no bookings
       </div>
     <% end %>
 
+  </div>
 
+  </div>
 
 
 
