@@ -41,8 +41,7 @@
   margin-left: 0;
   margin-top: auto;
   margin-bottom: 20px;
-  max-width: 150px;
-  min-width: 125px;
+  min-width: 50px;
   flex: 0;
 }
 .boat-info-and-review {
@@ -81,9 +80,6 @@
     // border:1px solid blue;
     // border-left:10px solid #ccc;
     // background:#eee;
-
-
-
 }
 
 .boat-info-text {
@@ -150,6 +146,57 @@
   font-size: 20px;
 }
 
+.boat-description-container {
+  padding: 20px;
+}
+
+.boat-info-text p {
+  border-bottom: 1px solid rgba(220,224,244,0.4);
+
+}
+
+.requestbtn {
+  background: #03B4FF;
+border-radius: 3px;
+padding: 6px 10px;
+margin-left: 5px;
+color: white;
+box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+transition: 0.3s;
+
+  &:hover {
+    background: #007baf;
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.backbtn {
+  background: #03B4FF;
+border-radius: 3px;
+padding: 6px 10px;
+margin-left: 5px;
+color: white;
+box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+transition: 0.3s;
+
+  &:hover {
+    background: #007baf;
+    text-decoration: none;
+    color: white;
+  }
+
+}
+
+.request-div {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-delete-btn a {
+  font-size: 28px;
+  color: white;
+}
 
 
 
