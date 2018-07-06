@@ -19,7 +19,9 @@
         <%= f.input :location, :id => "location", as: :string ,input_html: { class: "mr-sm-2" } %>
         <%= f.input :person, as: :integer , input_html: { class: "mr-sm-2" } , :placeholder => "People number" %>
         <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 "}, :placeholder => "Starts at" %>
-        <%= f.input :ends_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2"}, :placeholder => "Ends at" %>
+
+        <%= f.input :ends_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2"} , :placeholder => "Ends at" %>
+
         <%= f.button :submit, "Go", class: "btn btn-primary mx-sm-2"  %>
         <% end %>
     </div>
