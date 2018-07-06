@@ -21,7 +21,7 @@ cities = ["Milano"]
 photos = ["boat1.jpg", "boat2.jpg"]
 
 8.times do |i|
-  boat = Boat.create(title: "Boat #{i}", description: "dummy text ever since the 1500", user_id: User.all.pluck(:id).sample, city: cities.sample, person_capacity: rand(1..10), price: rand(50..1000), start_date: "2018-07-10", end_date: "2018-08-30")
+  boat = Boat.create(title: "Boat #{i}", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur", user_id: User.all.pluck(:id).sample, city: cities.sample, person_capacity: rand(1..10), price: rand(50..1000), start_date: "2018-07-10", end_date: "2018-08-30")
   boat.photo = File.open(Rails.root.join("db", "seeds", photos.sample))
   boat.save
 end
