@@ -5,28 +5,28 @@
 
     <div class="banner-header">
       <!-- <div class="container"> -->
-          <h1>Book the perfect boat</h1>
-          <p>Your dream boat is waiting for you</p>
-    </div>
+        <h1>Book the perfect boat</h1>
+        <p>Your dream boat is waiting for you</p>
+      </div>
       <!-- </div> -->
 
       <div class="form-wrapper">
 
-          <%= simple_form_for :criteria, url: boats_path,
-          wrapper: :inline_form,
-          html: { class: "form-inline"},
-          wrapper_mappings: {
-            boolean: :inline_boolean
-          },:method => :get do |f| %>
+        <%= simple_form_for :criteria, url: boats_path,
+        wrapper: :inline_form,
+        html: { class: "form-inline"},
+        wrapper_mappings: {
+          boolean: :inline_boolean
+        },:method => :get do |f| %>
 
 
-          <%= f.input :location, :id => "location", as: :string ,input_html: { class: "mr-sm-2 search-field search-field-left" } %>
-          <%= f.input :person, as: :integer , input_html: { class: "mr-sm-2 search-field" } , :placeholder => "People number" %>
-          <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 search-field"}, :placeholder => "Starts at" %>
-          <%= f.input :ends_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 search-field"}, :placeholder => "Ends at" %>
-          <%= f.button :submit, "Go", class: "search-c2a search-field-right"  %>
-          <% end %>
+        <%= f.input :location, :id => "location", as: :string ,input_html: { class: "mr-sm-2 search-field search-field-left" } %>
+        <%= f.input :person, as: :integer , input_html: { class: "mr-sm-2 search-field" } , :placeholder => "People number" %>
+        <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 search-field"}, :placeholder => "Starts at" %>
+        <%= f.input :ends_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 search-field"}, :placeholder => "Ends at" %>
+        <%= f.button :submit, "Go", class: "search-c2a search-field-right"  %>
+        <% end %>
       </div>
-
     </div>
-</div>
+  </div>
+
