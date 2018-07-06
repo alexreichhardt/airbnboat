@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.4.4'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem "geocoder"
 gem 'cloudinary'
 gem 'devise'
