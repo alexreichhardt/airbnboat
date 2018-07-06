@@ -3,6 +3,9 @@ class BoatsController < ApplicationController
 
   def index
 
+    if params[:criteria][:starts_at] > params[:criteria][:ends_at]
+      redirect_to root_path
+    end
 
     if params.has_key?(:criteria)
       @start_date = params[:criteria][:starts_at]
