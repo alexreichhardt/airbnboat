@@ -1,0 +1,23 @@
+.container_1{
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  width: 900px;
+
+}
+
+.items {
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.flex-item_1{
+  display: 0 0 20%;
+}
+
+
+.wrapper {
+  background-color: lightgrey;
+}
