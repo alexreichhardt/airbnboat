@@ -50,22 +50,22 @@
 
 
     <div class="request-and-back-container">
-      <% if params.has_key?(:capacity) %>
+
       <div class="request-and-go-back-btn">
+
+      <% if params.has_key?(:capacity) %>
         <p><%= link_to "Back to Results", boats_path(fromshow: "true", id: @boat.id, capacity: params[:capacity], start_date: @start_date, end_date: @end_date, persons_going: @persons_going, location: params[:location], price: params[:price]), class: "btn-medium go-back action-option" %></p>
-        </div>
       <% else %>
       <% end %>
+      </div>
 
-    <% if (current_user.nil? || current_user.id != @boat.user_id) %>
-      <div class="request-and-go-back-btn">
-        <%= link_to "Request to Book", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ), class: "btn-medium action-option" %>
+    <div class="request-and-go-back-btn">
+      <% if (current_user.nil? || current_user.id != @boat.user_id) %>
+          <%= link_to "Request to Book", new_boat_booking_path(@boat, price: @boat.price, capacity: @boat.person_capacity, start_date: @start_date, end_date: @end_date, persons_going: @persons_going ), class: "btn-medium action-option" %>
+      <% end %>
+
       </div>
     </div>
-    <% end %>
-
-
-
 
 
 
