@@ -4,45 +4,54 @@
 
 <div class="container-form">
   <div class="row">
-    <div class="col-sm-offset-4 col-sm-4">
-      <div class="form-box" style="margin-top: 20px">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div class="form-box" style="margin-top: 10px">
 
- <h2>Add a new boat</h2>
-    <%= simple_form_for(@boat) do |f| %>
-      <div class="form-group-new">
+        <h2 style="padding-left: 45px;">Add a new boat</h2>
+        <%= simple_form_for(@boat) do |f| %>
+        <div class="flexbox-form">
+          <div class="form-content-left">
+           <div class="form-group-new">
 
-        <%= f.input :title, as: :string %>
-      </div>
-      <div class="form-group-new">
+            <%= f.input :title, as: :string %>
+            </div>
+            <div class="form-group-new">
 
-        <%= f.input :description, as: :string %>
-      </div>
-      <div class="form-group-new">
-        <%= f.label :city, as: :string %>
-        <%= f.text_field :city, as: :string,  :id => "criteria_location" %>
-      </div>
-      <div class="form-group-new">
+              <%= f.input :description, as: :string %>
+            </div>
+            <div class="form-group-new" id="form-location">
+              <%= f.label :city, as: :string %>
+              <%= f.text_field :city, as: :string,  :id => "criteria_location" %>
+            </div>
+            <div class="form-group-new">
 
-        <%= f.input :person_capacity, as: :integer %>
-      </div>
-      <div class="form-group-new">
+              <%= f.input :person_capacity, as: :integer %>
+            </div>
 
-        <%= f.input :price, as: :integer %>
-      </div>
-      <div class="form-group-new">
-       <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 "}, :placeholder => "Starts at" %>
-      </div>
-      <div class="form-group-new">
-        <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker mr-sm-2"}, :placeholder => "Ends at" %>
-      </div>
+            <%= f.button :submit, "Create Boat", class: "search-c3a" %>
+          </div>
+          <div class="form-content-right">
+            <div class="form-group-new">
+              <%= f.input :price, as: :integer %>
+            </div>
+            <div class="form-group-new">
+              <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 hi "}, :placeholder => "Starts at" %>
+            </div>
+            <div class="form-group-new">
+              <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 "}, :placeholder => "Ends at" %>
+            </div>
+            <div class="form-group-new">
+              <%= f.input :photo %>
+              <%= f.input :photo_cache, as: :hidden %>
+            </div>
 
-        <%= f.input :photo %>
-        <%= f.input :photo_cache, as: :hidden %>
-
-        <%= f.button :submit, "Create Boat", class: "btn btn-primary" %>
-    <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
-    </div>
-      </div>
+<div style="height: calc(100vh - 70px - 645px)">
+</div>
 

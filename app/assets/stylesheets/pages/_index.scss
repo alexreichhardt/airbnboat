@@ -4,7 +4,7 @@
 @import "show";
 
 .main-container {
-  margin: 8px;
+  // margin: 8px;
 }
 
 
@@ -42,10 +42,8 @@
   display: flex;
   margin: 16px;
   // margin-bottom: 16px;
-
-
-
 }
+
 #map {
   flex: 0 0 320px;
   height: 100vh;
@@ -53,21 +51,26 @@
   top: 0 !important;
 }
 
+@media (max-width: 767px) {
+   #map {
+      display: none;
+   }
+}
+
 .filter-top {
   display:flex;
   border-bottom: 0.5px solid $gray;
   border-top: 0.5px solid $gray;
   padding: 16px;
-  padding-left: 48px;
+  padding-left: 16px;
   justify-content: flex-start;
-
 }
 
 
 .cards-container {
   flex: 1 1 auto;
   margin-right: 24px;
-  margin-left: 24px;
+  // margin-left: 24px;
 }
 
 .card {
@@ -80,7 +83,7 @@
   margin: 0 auto;
 
   // margin-bottom: 15px;
-  min-width: 160px;
+
 
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
@@ -125,6 +128,7 @@
   box-shadow: 1px 1px 1px grey;
   border-radius: 3px;
   margin-bottom: 15px;
+  min-width: 360px;
   &:hover {
     opacity: 0.9;
   }
