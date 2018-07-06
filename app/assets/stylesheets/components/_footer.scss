@@ -1,14 +1,15 @@
 
 .footer-wrapper {
-  background-color: rgba(164, 176, 193, 0.3);
+background-color: rgba(164, 176, 193, 0.3);
 
 }
 
 .footer {
-    // position: fixed;
+    background-color: rgba(164, 176, 193, 0.3);
+    position: static;
     // height: 100px;
     bottom: 0;
-      /* Set the width */
+    width: 100%;
     margin: 0 auto;
     padding: 0px 100px;
     padding-bottom: 0px;

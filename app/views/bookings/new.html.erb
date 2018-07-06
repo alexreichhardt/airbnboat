@@ -1,15 +1,28 @@
+<div class="container-all" style="min-height: calc(100vh - 70px - 131px);">
 
-<div class="container">
-  <h1>Your booking overview</h1>
+    <div class="banner-confirm">
+      <h1>Your booking overview</h1>
+    </div>
 
-  <div>
-    <p>Price: <%= @booking.price  %></p>
-    <p>Persons going: <%= @persons_going %></p>
-    <p>Capacity:<%= @booking.boat.person_capacity %></p>
-    <p>Start date: <%= @booking.start_date %></p>
-    <p>End date: <%= @booking.end_date %> </p>
 
-    <%= link_to "Agree and Confirm Booking", boat_bookings_path(@booking.boat_id, price: @booking.price, start_date: @booking.start_date, end_date: @booking.end_date), method: :post  %>
+<div class="container" >
+  <div class="row">
+    <div class="col-md-offset-3 col-xs-12 col-md-6">
+      <div class="card-overview">
+
+
+        <div>
+          <p>Price: <%= @booking.price  %></p>
+          <p>Persons going: <%= @persons_going %></p>
+          <p>Capacity:<%= @booking.boat.person_capacity %></p>
+          <p>Start date: <%= @booking.start_date %></p>
+          <p>End date: <%= @booking.end_date %> </p>
+
+          <%= link_to "Agree and Confirm Booking", boat_bookings_path(@booking.boat_id, price: @booking.price, start_date: @booking.start_date, end_date: @booking.end_date), class: "search-c5a",  method: :post  %>
+
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
+</div>
