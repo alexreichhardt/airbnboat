@@ -1,18 +1,10 @@
 <%= simple_form_for([@booking, @bookingreview]) do |f| %>
-
-  <div class="form-group">
-
-    <%= f.label :title  %>
-    <%= f.text_field :title  %>
-
-    <%= f.label :content  %>
-    <%= f.text_field :content  %>
-
-    <%= f.label :rating  %>
-    <%= f.text_field :rating  %>
-
-    <%= f.submit %>
-
- </div>
-
+<div class="form-inputs">
+  <%= f.input :title  %>
+  <%= f.input :content  %>
+  <%= f.input :rating  %>
+  <div class="search-4ca">
+  <%= f.button :submit, "Submit", class: "search-c4a" %>
+  </div>
+</div>
 <% end %>
