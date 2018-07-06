@@ -54,10 +54,45 @@ transition: 0.3s;
   width: 100px;
   height: 50px;
   transition: 0.3s;
+  color: white;
+
+  &:hover {
+     color: white;
+    background: #ff978d;
+  }
+}
+
+.search-c3a {
+  // background: $red;
+  background: #FF6D61;
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 4px 4px 4px 4px;
+  padding: 2px 10px;
+  height: 45px;
+  transition: 0.3s;
+  color: white;
 
 
   &:hover {
-    color: white;
+     color: white;
+    background: #ff978d;
+  }
+}
+
+.search-c4a {
+  // background: $red;
+  background: #FF6D61;
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 4px 4px 4px 4px;
+  padding: 2px 10px;
+  height: 45px;
+  width: 200px;
+  transition: 0.3s;
+  color: white;
+
+
+  &:hover {
+     color: white;
     background: #ff978d;
   }
 }

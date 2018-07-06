@@ -1,18 +1,18 @@
 <%- if controller_name != 'sessions' %>
 <div class="form-font">
-  <p>You already have an account? <%= link_to "Log in", new_session_path(resource_name) %></p><br />
+  <p>You already have an account? <%= link_to "Log in", new_session_path(resource_name), class: "action-link" %></p><br />
 </div>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <div class="form-font">
-  <p>You have no account yet? <%= link_to "Sign up", new_registration_path(resource_name)%></p>
+  <p>You have no account yet? <%= link_to "Sign up", new_registration_path(resource_name), class: "action-link"%></p>
   </div>
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
   <div class="form-font">
-  <p>Forgot your password? <%= link_to "Click here", new_password_path(resource_name) %></p><br />
+  <p>Forgot your password? <%= link_to "Click here", new_password_path(resource_name), class: "action-link" %></p><br />
 </div>
 <% end -%>
 
