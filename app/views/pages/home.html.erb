@@ -19,6 +19,7 @@
             boolean: :inline_boolean
           },:method => :get do |f| %>
 
+
           <%= f.input :location, :id => "location", as: :string ,input_html: { class: "mr-sm-2 search-field search-field-left" } %>
           <%= f.input :person, as: :integer , input_html: { class: "mr-sm-2 search-field" } , :placeholder => "People number" %>
           <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker mr-sm-2 search-field"}, :placeholder => "Starts at" %>
@@ -26,7 +27,6 @@
           <%= f.button :submit, "Go", class: "search-c2a search-field-right"  %>
           <% end %>
       </div>
+
     </div>
-
-
 </div>
