@@ -1,91 +1,18 @@
-/* Main navbar */
-.navbar-airnbboat {
-  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: white;
-  transition: all 0.3s ease;
-  height: 70px;
-  padding: 0px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
-/* Logo */
-.navbar-airnbboat-brand img {
-  height: 50px;
-}
-
-/* User Avatar */
-.navbar-airnbboat .avatar {
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-}
-
-/* Right section */
-.navbar-airnbboat-right {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Basic navbar item */
-.navbar-airnbboat-item {
-  cursor: pointer;
-  padding: 0 20px;
-}
-
-/* Navbar link */
-.navbar-airnbboat-link {
-  color: rgba(96, 96, 96, 0.7);
-  font-size: 14px;
-}
-.navbar-airnbboat-link:hover {
-  color: rgba(96, 96, 96, 0.9);
-  text-decoration: none;
-}
-
-/* Dropdown menu */
-.navbar-airnbboat-dropdown-menu {
-  margin-top: 15px;
-  box-shadow: 1px 1px 4px #E6E6E6;
-  border-color: #052b8d;
-}
-.navbar-airnbboat-dropdown-menu li > a {
-  transition: color 0.3s ease;
-  font-weight: lighter !important;
-  color: #999999 !important;
-  font-size: 15px !important;
-  line-height: 22px !important;
-  padding: 10px 20px;
-}
-.navbar-airnbboat-dropdown-menu li > a:hover {
-  background: transparent !important;
-  color: black !important;
-}
-.navbar-airnbboat-dropdown-menu:before {
-  content: ' ';
-  height: 10px;
-  width: 10px;
-  position: absolute;
-  right: 10px;
-  top: -6px;
-  background-color: white;
-  transform: rotate(45deg);
-  border-left: 1px solid #E6E6E6;
-  border-top: 1px solid #E6E6E6;
-}
 
 // Specific CSS for your home-page
 .banner {
   color: white;
   text-align: center;
   height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  // align-items: center;
+  // justify-content: center;
+
 
 }
 .banner h1 {
@@ -101,4 +28,22 @@
   margin-bottom: 30px;
 }
 
+
+.search-field {
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  height: 50px;
+  color: $dark-gray;
+}
+
+.simple_form .string .search-field-left {
+  border-radius: 3px;
+}
+
+.banner-content {
+  margin-top: 150px;
+}
+
+.form-wrapper {
+  margin-top: 80px;
+}
 

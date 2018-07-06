@@ -37,10 +37,27 @@ border-radius: 3px;
 padding: 6px 10px;
 color: white;
 box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+transition: 0.3s;
 
   &:hover {
     background: #007baf;
     text-decoration: none;
     color: white;
+  }
+}
+
+.search-c2a {
+  // background: $red;
+  background: #FF6D61;
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 4px 4px 4px 4px;
+  width: 100px;
+  height: 50px;
+  transition: 0.3s;
+
+
+  &:hover {
+    color: white;
+    background: #ff978d;
   }
 }
