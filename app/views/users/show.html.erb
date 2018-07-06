@@ -6,8 +6,8 @@
 
   <div class="profile-info">
       <div class="card1">
-        <h2> hey <%= @user.email%> </h2>
-        <%= cl_image_tag @user.avatar, crop: :fill %>
+        <%= cl_image_tag @user.avatar, crop: :fill, class: "avatar-lg" %>
+        <h3> hey <%= @user.email%> </h3>
         <p><%= link_to "Change your password", edit_user_registration_path %></p>
         <p><%= link_to "Change your avatar", edit_avatar_path %></p>
       </div>
@@ -15,7 +15,6 @@
 
 
   <div class="boats-bookings">
-
     <% if @boats.any? %>
       <% @boats.each do |boat| %>
         <div class="card1">
@@ -27,10 +26,10 @@
           <p>City: <%= boat.city %></p>
           <p>Person Capacity: <%= boat.person_capacity %></p>
           <%= link_to("Show Boat", boat_path(boat), :class => "btn btn-primary") %>
-
         </div>
       <% end %>
     <% else %>
+
       <div class="card1">
         no boats
       </div>
@@ -54,15 +53,15 @@
         </div>
       <% end %>
 
-
-
     <% else %>
       <div class="card1">
         no bookings
       </div>
     <% end %>
 
+  </div>
 
+  </div>
 
 
 
