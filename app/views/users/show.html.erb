@@ -1,100 +1,100 @@
 
-<div class=“container-all” style=“min-height: calc(100vh - 70px - 131px);“>
+<div class=“container-all” style="min-height: calc(100vh - 70px - 131px);"">
 
 <div class="grid">
 
 
   <div class="profile-info">
-      <h2></h2>
-      <div class="card1">
-        <%= cl_image_tag @user.avatar, crop: :fill, class: "avatar-lg" %>
-        <h3> hey <%= @user.email%> </h3>
+    <h2></h2>
+    <div class="card1">
+      <%= cl_image_tag @user.avatar, crop: :fill, class: "avatar-lg" %>
+      <h3> hey <%= @user.email%> </h3>
 
-        <p><%= link_to "Change your password", edit_user_registration_path, class: "inv-show-review" %></p>
-        <p><%= link_to "Change your avatar", edit_avatar_path, class: "inv-show-review" %></p>
-      </div>
+      <p><%= link_to "Change your password", edit_user_registration_path, class: "inv-show-review" %></p>
+      <p><%= link_to "Change your avatar", edit_avatar_path, class: "inv-show-review" %></p>
+    </div>
   </div>
 
 
   <div class="boats-bookings">
     <% if @boats.any? %>
     <h2>Your Boats</h2>
-      <% @boats.each do |boat| %>
+    <% @boats.each do |boat| %>
 
-        <div class="card1">
-          <div class="message">
-            <%= cl_image_tag(boat.photo, class: "avatar-lg") %>
-            <div class="message-name">
-               <h3> <%=  boat.title %> </h3>
-               <p><%= boat.name %></p>
-               <p> <%= boat.city %> </p>
+    <div class="card1">
+      <div class="message">
+        <%= cl_image_tag(boat.photo, class: "avatar-lg") %>
+        <div class="message-name">
+         <h3> <%=  boat.title %> </h3>
+         <p><%= boat.name %></p>
+         <p> <%= boat.city %> </p>
 
-            </div>
+       </div>
 
-            <div class="message-body-description">
-             <p><%= boat.description %></p>
+       <div class="message-body-description">
+         <p><%= boat.description %></p>
 
-            </div>
+       </div>
 
 
-            <div class="message-body">
-               <%= link_to("Show Boat", boat_path(boat), :class => "show-review") %>
-               <i><%= link_to("", edit_boat_path(boat) , :class => "fas fa-edit icons") %></i>
-              <i><%= link_to("", boat_path(boat), method: :delete, data: { confirm: "Are you sure?" }, :class => "fas fa-trash-alt icons") %></i>
-            </div>
-          </div>
-        </div>
+       <div class="message-body">
+         <%= link_to("Show Boat", boat_path(boat), :class => "show-review") %>
+         <i><%= link_to("", edit_boat_path(boat) , :class => "fas fa-edit icons") %></i>
+         <i><%= link_to("", boat_path(boat), method: :delete, data: { confirm: "Are you sure?" }, :class => "fas fa-trash-alt icons") %></i>
+       </div>
+     </div>
+   </div>
 
+   <% end %>
+   <% else %>
+
+   <div class="card1">
+    no boats
+  </div>
+  <% end %>
+
+  <% if @bookings.any?  %>
+  <h2>Your Bookings</h2>
+  <% @bookings.each do |booking| %>
+
+  <div class="card1">
+    <div class="message">
+      <%= cl_image_tag(Boat.find(booking.boat_id).photo, class: "avatar-lg") %>
+      <div class="message-name">
+       <h3> <%=  Boat.find(booking.boat_id).title %> </h3>
+       <p>From <%= booking.start_date%></p>
+       <p>to <%= booking.end_date%></p>
+     </div>
+
+     <div class="message-body">
+       <p><strong>Total price</strong></p>
+       <p> € <%= booking.price %> </p>
+     </div>
+
+
+     <div class="message-body">
+      <% if BookingReview.where(booking_id: booking.id).first.nil? %>
+      <%= link_to("Add review", new_booking_booking_review_path(booking.id), class: "show-review") %>
+      <% else %>
+      <%= link_to("Show review", booking_booking_review_path(booking.id, BookingReview.where(booking_id: booking.id).first.id), class: "show-review") %>
       <% end %>
-    <% else %>
-
-      <div class="card1">
-        no boats
-      </div>
-    <% end %>
-
-    <% if @bookings.any?  %>
-    <h2>Your Bookings</h2>
-      <% @bookings.each do |booking| %>
-
-        <div class="card1">
-          <div class="message">
-            <%= cl_image_tag(Boat.find(booking.boat_id).photo, class: "avatar-lg") %>
-            <div class="message-name">
-               <h3> <%=  Boat.find(booking.boat_id).title %> </h3>
-               <p>From <%= booking.start_date%></p>
-               <p>to <%= booking.end_date%></p>
-            </div>
-
-            <div class="message-body">
-             <p><strong>Total price</strong></p>
-             <p> € <%= booking.price %> </p>
-            </div>
-
-
-            <div class="message-body">
-                <% if BookingReview.where(booking_id: booking.id).first.nil? %>
-                <%= link_to("Add review", new_booking_booking_review_path(booking.id), class: "show-review") %>
-                <% else %>
-                <%= link_to("Show review", booking_booking_review_path(booking.id, BookingReview.where(booking_id: booking.id).first.id), class: "show-review") %>
-                <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-
-    <% else %>
-      <div class="card1">
-        no bookings
-      </div>
-    <% end %>
-
-
+    </div>
   </div>
+</div>
+<% end %>
+
+<% else %>
+<div class="card1">
+  no bookings
+</div>
+<% end %>
 
 
-  </div>
-  </div>
+</div>
+
+
+</div>
+</div>
 
 
 
